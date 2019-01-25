@@ -17,31 +17,33 @@ float sqrt_min(float x) {
 
 int gcd(int m, int n) {
     if (m == 0 && n == 0) return 0;
-    if (m < 0) m = -m;
-    if (n < 0) n = -n;
-    if (m == 0) return n;
- 
-    int divisor = 1;
-    int a = 1;
+    else {
+        if (m == 0) return n;
+        else {
+            if (m < 0) m = -m;
+            if (n < 0) n = -n;
+        
+            int divisor = 1;
+            int a = 1;
 
-    while (a <= m) {
-        int m2 = m;
-        int m_mod_a = 0;
-        int n2 = n;
-        int n_mod_a = 0;
+            while (a <= m) {
+                int m_mod_a_rem = m;
+                int n_mod_a_rem = n;
 
-        while (m2 >= a) m2 = m2 - a;
-        while (n2 >= a) n2 = n2 - a;
+                while (m_mod_a_rem >= a) m_mod_a_rem = m_mod_a_rem - a;
+                while (n_mod_a_rem >= a) n_mod_a_rem = n_mod_a_rem - a;
 
-        if (m2 == 0 && n2 == 0) divisor = a;
-        a = a + 1;
+                if (m_mod_a_rem == 0 && n_mod_a_rem == 0) divisor = a;
+                a = a + 1;
+            }
+        
+            return divisor;
+        }
     }
- 
-    return divisor;
 }
 
 int main() {
     sqrt_min(2500);
-    printf("%d\n", gcd(100, 169));
+    printf("%d\n", gcd(100, 170));
     return EXIT_SUCCESS;
 }

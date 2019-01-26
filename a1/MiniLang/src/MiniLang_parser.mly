@@ -1,5 +1,3 @@
-%start <bool> main
-
 %token <bool> T_TRUE T_FALSE
 %token <int> T_INT
 %token <float> T_FLOAT
@@ -24,7 +22,19 @@
 %nonassoc T_NEG T_NOT
 %nonassoc T_LPAREN
 
+%start main
+%type <int> main
 %%
 
 main:
-  | T_WRITEINT T_INT { true }
+  expr T_EOL                  { $1 }
+;
+expr:
+  | T_INT                   { $1 }
+  | T_LPAREN expr T_RPAREN  { $2 }
+  | expr T_ADD expr         { $1 + $3 }
+  | expr T_SUB expr         { $1 - $3 }
+  | expr T_MUL expr         { $1 * $3 }
+  | expr T_DIV expr         { $1 / $3 }
+  | T_SUB expr %prec T_NEG  { - $2 }
+;

@@ -17,6 +17,7 @@
     "boolean", T_BOOL;
     "if", T_IF;
     "else", T_ELSE;
+    "while", T_WHILE;
     "read", T_READ;
     "print", T_PRINT;
     "true", T_TRUE;

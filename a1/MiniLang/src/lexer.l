@@ -33,13 +33,15 @@ ALPHANUM {ALPHA}|{DIGIT}
 "boolean" { puts("Keyword: boolean"); }
 "if" { puts("Keyword: if"); }
 "else" { puts("Keyword: else"); }
+"while" { puts("Keyword: while"); }
 "read" { puts("Keyword: read"); }
 "print" { puts("Keyword: print"); }
 "true" { puts("Keyword: true"); }
 "false" { puts("Keyword: false"); }
 
-\"[ {ALPHANUM}{SYMBOL}{ESCAPE}]*\" {
-    printf("String: %s\n", yytext); }
+"="  { printf("Assignment operator: %s\n", yytext); }
+"{" { printf("Left curly brace\n"); }
+"}" { printf("Right curly brace\n"); }
 
 "+" printf("Plus\n");
 "-" printf("Minus\n");
@@ -47,9 +49,17 @@ ALPHANUM {ALPHA}|{DIGIT}
 "/" printf("Divide\n");
 "(" printf("Left parenthesis\n");
 ")" printf("Right parenthesis\n");
+"==" { printf("Operator: %s\n", yytext); }
+"!=" { printf("Operator: %s\n", yytext); }
+">=" { printf("Operator: %s\n", yytext); }
+"<=" { printf("Operator: %s\n", yytext); }
+">" { printf("Operator: %s\n", yytext); }
+"<" { printf("Operator: %s\n", yytext); }
+"&&" { printf("Operator: %s\n", yytext); }
+"||" { printf("Operator: %s\n", yytext); }
 
-({ALPHA}|_)({ALPHANUM}|_)* {
-    printf("Identifier: %s\n", yytext);
+(0|([1-9]{DIGITS}))\.{DIGITS} {
+    printf("Floating point number: %s\n", yytext);
 }
 
 0|([1-9]{DIGITS}) {
@@ -63,6 +73,13 @@ ALPHANUM {ALPHA}|{DIGIT}
 {ESCAPE} {
     printf("Escape character: %s\n", yytext);
 }
+
+({ALPHA}|_)({ALPHANUM}|_)* {
+    printf("Identifier: %s\n", yytext);
+}
+
+\"[ {ALPHANUM}{SYMBOL}{ESCAPE}]*\" {
+    printf("String: %s\n", yytext); }
 
 . {
     fprintf(stderr, "Error: (line %d) unexpected character '%s'\n", yylineno, yytext);

@@ -37,6 +37,7 @@ rule token = parse
   | ['\n']            { incr line_num; T_EOL }
   | whitespace        { token lexbuf }
   | digits as d       { T_INT (int_of_string d) }
+  | '='               { T_ASSIGN }
   | '+'               { T_ADD }
   | '-'               { T_SUB }
   | '*'               { T_MUL }

@@ -1,3 +1,14 @@
+exception Codegen_error of string
+
+let gen_read id =
+  print_string "read(" ^ id ^ ")"
+
+let gen_print expr =
+  print_string (eval expr)
+
+let rec eval expr =
+  assert false
+
 let _ =
   try
     let lexbuf = Lexing.from_channel stdin in

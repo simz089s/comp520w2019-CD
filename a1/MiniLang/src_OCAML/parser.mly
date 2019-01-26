@@ -1,3 +1,15 @@
+/* %{
+
+open Codegen
+
+let depth = ref 0
+let depth_incr f = incr depth; f !depth
+let depth_reset = depth := 0
+
+%} */
+
+%start main
+
 %token <bool> T_TRUE T_FALSE
 %token <int> T_INT
 %token <float> T_FLOAT
@@ -11,6 +23,7 @@
 %token T_IF T_ELSE
 %token T_WHILE
 %token T_READ T_PRINT
+%token T_ASSIGN
 %token T_COMMENT
 %token T_ADD T_SUB T_MUL T_DIV
 %token T_EQUALS T_NEQUALS T_GREATEREQ T_LESSEQ T_GREATER T_LESS
@@ -27,7 +40,6 @@
 %nonassoc T_NEG T_NOT
 %nonassoc T_LPAREN
 
-%start main
 %type <int> main
 
 %%
@@ -38,7 +50,14 @@ main:
 
 stmts:
   |                         { }
-  | stmt T_SEMICOLON stmts    { }
+  | stmt T_SEMICOLON stmts  { }
+;
+
+stmt:
+  | T_IDENT T_ASSIGN expr             { gen_assign $1 $3; depth_reset }
+  | T_READ T_LPAREN T_IDENT T_RPAREN  { gen_read $3 }
+  | T_PRINT T_LPAREN expr T_RPAREN    { gen_print $3; depth_reset }
+;
 
 expr:
   | T_INT                   { $1 }

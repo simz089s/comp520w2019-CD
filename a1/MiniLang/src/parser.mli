@@ -7,7 +7,9 @@ type token =
   | T_TRUE of (bool)
   | T_SUB
   | T_RPAREN
+  | T_READ
   | T_RBRACE
+  | T_PRINT
   | T_OR
   | T_NOT
   | T_NEQUALS

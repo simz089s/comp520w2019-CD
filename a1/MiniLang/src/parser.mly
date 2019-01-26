@@ -4,13 +4,19 @@
 %token <string> T_IDENT
 %token T_LPAREN T_RPAREN
 %token T_LBRACE T_RBRACE
+%token T_SEMICOLON
+%token T_VAR
+%token T_STRING
+%token T_BOOL
 %token T_IF T_ELSE
 %token T_WHILE
+%token T_READ T_PRINT
+%token T_COMMENT
 %token T_ADD T_SUB T_MUL T_DIV
 %token T_EQUALS T_NEQUALS T_GREATEREQ T_LESSEQ T_GREATER T_LESS
 %token T_AND T_OR T_NOT
 %token T_NEG
-%token T_EOF T_EOL T_DEF T_INTTYPE T_WRITEINT
+%token T_EOF T_EOL
 
 %left T_OR
 %left T_AND
@@ -23,11 +29,17 @@
 
 %start main
 %type <int> main
+
 %%
 
 main:
-  expr T_EOL                  { $1 }
+  | stmts T_EOF             { raise Eof }
 ;
+
+stmts:
+  |                         { }
+  | stmt T_SEMICOLON stmts    { }
+
 expr:
   | T_INT                   { $1 }
   | T_LPAREN expr T_RPAREN  { $2 }

@@ -2,13 +2,29 @@
   open Parser
   exception Eof
   exception Error of string
+  exception Syntax_error of string
   open Printf
 
-  let num_lines = ref 0
-  let num_chars = ref 0
+  let line_num = ref 1
+
+  let syntax_error msg = raise (Syntax_error (msg ^ " on line " ^ (string_of_int !line_num)))
+
+  let keywords = [
+    "var", T_VAR;
+    "float", T_FLOAT;
+    "int", T_INT;
+    "string", T_STRING;
+    "boolean", T_BOOL;
+    "if", T_IF;
+    "else", T_ELSE;
+    "read", T_READ;
+    "print", T_PRINT;
+    "true", T_TRUE;
+    "false", T_FALSE
+  ]
 }
 
-let whitespace = [' ' '\t' '\r' '\n']
+let whitespace = [' ' '\t' '\r']
 let digit = ['0'-'9']
 let digits = digit+
 let alpha = ['a'-'z' 'A'-'Z']
@@ -17,17 +33,9 @@ let ident = (alpha | '_') (alphanum | '_')*
 let symbols = ['~' '@' '#' '$' '%' '^' '&' '*' '-' '+' '/' '`' '<' '>' '=' '|' '.' ',' ';' ':' '!' '?' '{' '}' '[' ']' '(' ')' '\'']
 let escape = "\\a" | "\\b" | "\\f" | "\\n" | "\\r" | "\\t" | "\\v" | "\\\"" | "\\\\"
 
-rule count = parse
-| '\n'  { incr num_lines;
-          incr num_chars;
-          count lexbuf }
-| _     { incr num_chars;
-          count lexbuf }
-| eof   { () }
-
-and token = parse
-  | [' ' '\t']        { token lexbuf }
-  | ['\n']            { T_EOL }
+rule token = parse
+  | ['\n']            { incr line_num; T_EOL }
+  | whitespace        { token lexbuf }
   | digits as d       { T_INT (int_of_string d) }
   | '+'               { T_ADD }
   | '-'               { T_SUB }
@@ -35,13 +43,19 @@ and token = parse
   | '/'               { T_DIV }
   | '('               { T_LPAREN }
   | ')'               { T_RPAREN }
-  | eof               { raise Eof }
+  | ident as id {
+      let l = String.lowercase id in
+      try List.assoc l keywords
+      with Not_found -> T_IDENT id
+    }
+  | _                 { syntax_error ("Invalid character on line " ^ (string_of_int !line_num)) }
+  | eof               { T_EOF }
 
 {
   let main () =
     let lexbuf = Lexing.from_channel stdin in
-    count lexbuf;
-    Printf.printf "# of lines = %d, # of chars = %d\n" !num_lines !num_chars
+    token lexbuf;
+    Printf.printf "Number of lines = %d\n" !line_num
 
   let _ = Printexc.print main ()
 }

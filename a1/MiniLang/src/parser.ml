@@ -14,7 +14,9 @@ type token =
 )
   | T_SUB
   | T_RPAREN
+  | T_READ
   | T_RBRACE
+  | T_PRINT
   | T_OR
   | T_NOT
   | T_NEQUALS
@@ -28,25 +30,25 @@ type token =
   | T_INT of (
 # 2 "parser.mly"
        (int)
-# 32 "parser.ml"
+# 34 "parser.ml"
 )
   | T_IF
   | T_IDENT of (
 # 4 "parser.mly"
        (string)
-# 38 "parser.ml"
+# 40 "parser.ml"
 )
   | T_GREATEREQ
   | T_GREATER
   | T_FLOAT of (
 # 3 "parser.mly"
        (float)
-# 45 "parser.ml"
+# 47 "parser.ml"
 )
   | T_FALSE of (
 # 1 "parser.mly"
        (bool)
-# 50 "parser.ml"
+# 52 "parser.ml"
 )
   | T_EQUALS
   | T_EOL
@@ -163,9 +165,9 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_expr ->
             let _3 = () in
             let _1 = () in
             let _v : 'tv_expr = 
-# 33 "parser.mly"
+# 34 "parser.mly"
                             ( _2 )
-# 169 "parser.ml"
+# 171 "parser.ml"
              in
             _menhir_goto_expr _menhir_env _menhir_stack _menhir_s _v) : 'freshtv20)) : 'freshtv22)
         | T_SUB ->
@@ -193,9 +195,9 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_expr ->
             ((let ((_menhir_stack, _menhir_s, _1), _, _3) = _menhir_stack in
             let _2 = () in
             let _v : 'tv_expr = 
-# 35 "parser.mly"
+# 36 "parser.mly"
                             ( _1 - _3 )
-# 199 "parser.ml"
+# 201 "parser.ml"
              in
             _menhir_goto_expr _menhir_env _menhir_stack _menhir_s _v) : 'freshtv28)
         | _ ->
@@ -213,9 +215,9 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_expr ->
         ((let ((_menhir_stack, _menhir_s, _1), _, _3) = _menhir_stack in
         let _2 = () in
         let _v : 'tv_expr = 
-# 36 "parser.mly"
+# 37 "parser.mly"
                             ( _1 * _3 )
-# 219 "parser.ml"
+# 221 "parser.ml"
          in
         _menhir_goto_expr _menhir_env _menhir_stack _menhir_s _v) : 'freshtv34)) : 'freshtv36)
     | MenhirState9 ->
@@ -226,9 +228,9 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_expr ->
         ((let ((_menhir_stack, _menhir_s, _1), _, _3) = _menhir_stack in
         let _2 = () in
         let _v : 'tv_expr = 
-# 37 "parser.mly"
+# 38 "parser.mly"
                             ( _1 / _3 )
-# 232 "parser.ml"
+# 234 "parser.ml"
          in
         _menhir_goto_expr _menhir_env _menhir_stack _menhir_s _v) : 'freshtv38)) : 'freshtv40)
     | MenhirState12 ->
@@ -247,9 +249,9 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_expr ->
             ((let ((_menhir_stack, _menhir_s, _1), _, _3) = _menhir_stack in
             let _2 = () in
             let _v : 'tv_expr = 
-# 34 "parser.mly"
+# 35 "parser.mly"
                             ( _1 + _3 )
-# 253 "parser.ml"
+# 255 "parser.ml"
              in
             _menhir_goto_expr _menhir_env _menhir_stack _menhir_s _v) : 'freshtv42)
         | _ ->
@@ -267,9 +269,9 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_expr ->
         ((let ((_menhir_stack, _menhir_s), _, _2) = _menhir_stack in
         let _1 = () in
         let _v : 'tv_expr = 
-# 38 "parser.mly"
+# 39 "parser.mly"
                             ( - _2 )
-# 273 "parser.ml"
+# 275 "parser.ml"
          in
         _menhir_goto_expr _menhir_env _menhir_stack _menhir_s _v) : 'freshtv48)) : 'freshtv50)
     | MenhirState0 ->
@@ -290,37 +292,37 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> 'tv_expr ->
             ((let (_menhir_stack, _menhir_s, _1) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 25 "parser.mly"
+# 26 "parser.mly"
       (int)
-# 296 "parser.ml"
+# 298 "parser.ml"
             ) = 
-# 29 "parser.mly"
+# 30 "parser.mly"
                               ( _1 )
-# 300 "parser.ml"
+# 302 "parser.ml"
              in
             let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : 'freshtv55) = _menhir_stack in
             let (_menhir_s : _menhir_state) = _menhir_s in
             let (_v : (
-# 25 "parser.mly"
+# 26 "parser.mly"
       (int)
-# 308 "parser.ml"
+# 310 "parser.ml"
             )) = _v in
             ((let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : 'freshtv53) = Obj.magic _menhir_stack in
             let (_menhir_s : _menhir_state) = _menhir_s in
             let (_v : (
-# 25 "parser.mly"
+# 26 "parser.mly"
       (int)
-# 316 "parser.ml"
+# 318 "parser.ml"
             )) = _v in
             ((let (_menhir_env : _menhir_env) = _menhir_env in
             let (_menhir_stack : 'freshtv51) = Obj.magic _menhir_stack in
             let (_menhir_s : _menhir_state) = _menhir_s in
             let (_1 : (
-# 25 "parser.mly"
+# 26 "parser.mly"
       (int)
-# 324 "parser.ml"
+# 326 "parser.ml"
             )) = _v in
             (Obj.magic _1 : 'freshtv52)) : 'freshtv54)) : 'freshtv56)) : 'freshtv58)) : 'freshtv60)
         | T_MUL ->
@@ -410,7 +412,7 @@ and _menhir_run2 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
 and _menhir_run3 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
 # 2 "parser.mly"
        (int)
-# 414 "parser.ml"
+# 416 "parser.ml"
 ) -> 'ttv_return =
   fun _menhir_env _menhir_stack _menhir_s _v ->
     let _menhir_env = _menhir_discard _menhir_env in
@@ -420,12 +422,12 @@ and _menhir_run3 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
     let (_1 : (
 # 2 "parser.mly"
        (int)
-# 424 "parser.ml"
+# 426 "parser.ml"
     )) = _v in
     ((let _v : 'tv_expr = 
-# 32 "parser.mly"
+# 33 "parser.mly"
                             ( _1 )
-# 429 "parser.ml"
+# 431 "parser.ml"
      in
     _menhir_goto_expr _menhir_env _menhir_stack _menhir_s _v) : 'freshtv4)
 
@@ -442,9 +444,9 @@ and _menhir_discard : _menhir_env -> _menhir_env =
     }
 
 and main : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
-# 25 "parser.mly"
+# 26 "parser.mly"
       (int)
-# 448 "parser.ml"
+# 450 "parser.ml"
 ) =
   fun lexer lexbuf ->
     let _menhir_env =
@@ -478,4 +480,4 @@ and main : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
   
 
 
-# 482 "parser.ml"
+# 484 "parser.ml"

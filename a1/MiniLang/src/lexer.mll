@@ -8,10 +8,14 @@
   let num_chars = ref 0
 }
 
-let alphanum = ['a'-'z' 'A'-'Z' '0'-'9']
+let whitespace = [' ' '\t' '\r' '\n']
+let digit = ['0'-'9']
+let digits = digit+
+let alpha = ['a'-'z' 'A'-'Z']
+let alphanum = alpha | digit
+let ident = (alpha | '_') (alphanum | '_')*
 let symbols = ['~' '@' '#' '$' '%' '^' '&' '*' '-' '+' '/' '`' '<' '>' '=' '|' '.' ',' ';' ':' '!' '?' '{' '}' '[' ']' '(' ')' '\'']
-let escape = ["\\a" "\\b" "\\f" "\\n" "\\r" "\\t" "\\v" "\\\"" "\\\\"]
-let id = ['a'-'z' 'A'-'Z' '_'] ['a'-'z' 'A'-'Z' '0'-'9' '_']*
+let escape = "\\a" | "\\b" | "\\f" | "\\n" | "\\r" | "\\t" | "\\v" | "\\\"" | "\\\\"
 
 rule count = parse
 | '\n'  { incr num_lines;
@@ -21,20 +25,13 @@ rule count = parse
           count lexbuf }
 | eof   { () }
 
-and translate = parse
-  | "current_directory" { print_string (Sys.getcwd ());
-                          translate lexbuf }
-  | _ as c              { print_char c;
-                          translate lexbuf }
-  | eof                 { exit 0 }
-
 and token = parse
   | [' ' '\t']        { token lexbuf }
-  | ['\n' ]           { T_EOL }
-  | ['0'-'9']+ as lxm { T_INT(int_of_string lxm) }
-  | '+'               { T_PLUS }
-  | '-'               { T_MINUS }
-  | '*'               { T_TIMES }
+  | ['\n']            { T_EOL }
+  | digits as d       { T_INT (int_of_string d) }
+  | '+'               { T_ADD }
+  | '-'               { T_SUB }
+  | '*'               { T_MUL }
   | '/'               { T_DIV }
   | '('               { T_LPAREN }
   | ')'               { T_RPAREN }

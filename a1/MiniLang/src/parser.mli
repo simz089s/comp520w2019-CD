@@ -6,7 +6,6 @@ type token =
   | T_WHILE
   | T_TRUE of (bool)
   | T_SUB
-  | T_STRING of (string)
   | T_RPAREN
   | T_RBRACE
   | T_OR
@@ -41,4 +40,4 @@ exception Error
 
 (* The monolithic API. *)
 
-val main: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (bool)
+val main: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (int)

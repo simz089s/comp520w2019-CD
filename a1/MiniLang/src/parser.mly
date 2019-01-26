@@ -1,7 +1,6 @@
 %token <bool> T_TRUE T_FALSE
 %token <int> T_INT
 %token <float> T_FLOAT
-%token <string> T_STRING
 %token <string> T_IDENT
 %token T_LPAREN T_RPAREN
 %token T_LBRACE T_RBRACE

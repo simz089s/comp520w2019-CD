@@ -1,11 +1,11 @@
 all:
-	ocamllex MiniLang_lexer.mll
-	menhir MiniLang_parser.mly
-	ocamlc -c MiniLang_parser.mli
-	ocamlc -c MiniLang_lexer.ml
-	ocamlc -c MiniLang_parser.ml
+	ocamllex lexer.mll
+	menhir parser.mly
+	ocamlc -c parser.mli
+	ocamlc -c lexer.ml
+	ocamlc -c parser.ml
 	ocamlc -c MiniLang.ml
-	ocamlc -o MiniLang MiniLang_lexer.cmo MiniLang_parser.cmo MiniLang_.cmo
+	ocamlc -o MiniLang lexer.cmo parser.cmo MiniLang.cmo
 
 clean:
 	echo "Cleaning..."

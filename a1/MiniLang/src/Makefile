@@ -4,4 +4,4 @@ all:
 	#bison --verbose parser.y
 
 clean:
-	echo "Cleaning..."
+	echo "NOT Cleaning..."

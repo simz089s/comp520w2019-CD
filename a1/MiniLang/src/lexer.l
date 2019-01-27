@@ -15,7 +15,6 @@ SINGLEQUOTE ' /* Put here because editor's syntax highlighter can't properly lex
 ESCAPE \\[abfnrtv\"\\]
 WHITESPACE [ \t\r]
 DIGIT [0-9]
-DIGITS [0-9]*
 ALPHA [a-zA-Z]
 ALPHANUM [a-zA-Z0-9]
 
@@ -65,12 +64,12 @@ ALPHANUM [a-zA-Z0-9]
 "&&"    { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); return tAND; }
 "||"    { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); return tOR; }
 
-(0|([1-9]{DIGITS}))\.{DIGITS} {
+(0|([1-9][0-9]*))\.[0-9]+ {
     if (tokens_mode) printf("Floating point number: %s\n", yytext);
     return tFLOATVAL;
 }
 
-0|([1-9]{DIGITS}) {
+0|([1-9]{DIGIT}*) {
     if (tokens_mode) printf("Integer constant: %s\n", yytext);
     return tINTVAL;
 }

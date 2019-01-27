@@ -1,0 +1,22 @@
+// Calculate the least common multiple of m and n
+
+var m: int;
+var n: int;
+
+read(m);
+read(n);
+
+var temp_m: int = m;
+var temp_n: int = n;
+
+while (temp_m != temp_n) {
+    if (temp_m > temp_n) {
+        temp_n = temp_n + n;
+    }
+    else {
+        temp_m = temp_m + m;
+    }
+}
+
+print("LCM is ");
+print(temp_m);

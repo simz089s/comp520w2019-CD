@@ -60,7 +60,7 @@ program : stmts tEOF    { yyerror("End of file"); }
         ;
 
 stmts   : %empty    { }
-        | stmt smts { }
+        | stmt stmts { }
         ;
 
 stmt    : tREAD tLPAREN tIDENT tRPAREN tSEMICOLON /* read(x); */
@@ -100,7 +100,7 @@ expr    : tIDENT
         | tSTRINGTYPE
         | tNEG expr %prec tNEG
         | tNOT expr %prec tNOT
-        | tLPAREN exp tRPAREN
+        | tLPAREN expr tRPAREN
         | expr tMUL expr
         | expr tDIV expr
         | expr tADD expr

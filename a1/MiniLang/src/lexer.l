@@ -66,7 +66,7 @@ ALPHANUM [a-zA-Z0-9]
     if (tokens_mode) printf("Floating point number: %s\n", yytext);
 }
 
-0|([1-9]{DIGITS}) {
+(0[^0-9])|([1-9]{DIGITS}) {
     if (tokens_mode) printf("Integer constant: %s\n", yytext);
 }
 

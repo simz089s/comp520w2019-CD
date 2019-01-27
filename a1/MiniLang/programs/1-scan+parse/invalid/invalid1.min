@@ -1,4 +1,6 @@
 // int/float values with leading 0s disallowed
 
 var x: int = 0;
-x: int = 00;
+x = 101;
+x: int;
+x = 0;

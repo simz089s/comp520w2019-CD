@@ -20,12 +20,14 @@ void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
     int int_val;
     float float_val;
     char* string_val;
+    char* ident;
 }
 
-%token <bool_val> tBOOLVAL
-%token <int_val> tINTVAL
-%token <float_val> tFLOATVAL
-%token <string_val> tIDENT
+%token <bool_val> tBOOLTYPE
+%token <int_val> tINTTYPE
+%token <float_val> tFLOATTYPE
+%toekn <string_val> tSTRINGTYPE
+%token <ident> tIDENT
 %token tLPAREN tRPAREN
 %token tLBRACE tRBRACE
 %token tSEMICOLON
@@ -43,36 +45,50 @@ void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
 
 %left tOR
 %left tAND
-%nonassoc tEQUALS tNEQUALS
-%nonassoc tGREATEREQ tLESSEQ tGREATER tLESS
+%left tEQUALS tNEQUALS
+%left tGREATEREQ tLESSEQ tGREATER tLESS
 %left tADD tSUB
 %left tMUL tDIV
-%nonassoc tNEG tNOT
-%nonassoc tLPAREN
+%left tNEG tNOT
+%left tLPAREN
 
 %start program
 
 %%
+
 program : stmts tEOF    { yyerror("End of file"); }
         ;
 
-stmts   : stmt T_SEMICOLON stmts    { }
+stmts   : %empty    { }
+        | stmt smts { }
         ;
 
-stmt    : T_IDENT T_ASSIGN expr             { $$ = gen_assign($1, $3); }
-        | T_READ T_LPAREN T_IDENT T_RPAREN  { $$ = gen_read($3); }
-        | T_PRINT T_LPAREN expr T_RPAREN    { $$ = gen_print($3); }
+stmt    : tREAD tLPAREN tIDENT tRPAREN tSEMICOLON /* read(x); */
+        | tPRINT tLPAREN expr tRPAREN tSEMICOLON /* print(x); */
+        | decl
+        | tIDENT tASSIGN expr tSEMICOLON /* x = 1+1; */
         ;
 
-exp : tIDENT                { $$ = genEXP_ident($1); }
-    | tINTVAL               { $$ = genEXP_int_val($1); }
-    | exp tMUL exp          { $$ = genEXP_bin_op(k_expressionKindMultiplication, $1, $3); }
-    | exp tDIV exp          { $$ = genEXP_bin_op(k_expressionKindDivision, $1, $3); }
-    | exp tADD exp          { $$ = genEXP_bin_op(k_expressionKindAddition, $1, $3); }
-    | exp tSUB exp          { $$ = genEXP_bin_op(k_expressionKindSubtraction, $1, $3); }
-    | tLPAREN exp tRPAREN   { $$ = $2; }
-    | tSUB expr %prec tNEG  { $$ = - $2; }
+decl    : tVAR tIDENT tSEMICOLON tBOOLTYPE tSEMICOLON
+        | tVAR tIDENT tSEMICOLON tINTTYPE tSEMICOLON
+        | tVAR tIDENT tSEMICOLON tFLOATTYPE tSEMICOLON
+        | tVAR tIDENT tSEMICOLON tSTRINGTYPE tSEMICOLON
+        | tVAR tIDENT tSEMICOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+        | tVAR tIDENT tSEMICOLON tINTTYPE tASSIGN expr tSEMICOLON
+        | tVAR tIDENT tSEMICOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+        | tVAR tIDENT tSEMICOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+        ;
+
+exp : tIDENT
+    | tINTVAL
+    | exp tMUL exp
+    | exp tDIV exp
+    | exp tADD exp
+    | exp tSUB exp
+    | tLPAREN exp tRPAREN
+    | tSUB expr %prec tNEG
     ;
+
 %%
 
 int main() {

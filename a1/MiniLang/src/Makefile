@@ -1,15 +1,15 @@
 CC=gcc
-CFLAGS=-Wall -pedantic -o
+CFLAGS=-o
 
 LEXGEN=flex
 
 PARSEGEN=bison
-PARSEFLAGS=--verbose
+PARSEFLAGS=--verbose --report=all
 
-all:
+all: main.c
 	$(PARSEGEN) $(PARSEFLAGS) parser.y
 	$(LEXGEN) lexer.l
-	$(CC) $(CFLAGS) MiniLang lex.yy.c -lfl
+	$(CC) $(CFLAGS) MiniLang main.c -lfl
 
 parser: parser.y
 	$(PARSEGEN) $(PARSEFLAGS) parser.y
@@ -19,4 +19,4 @@ lexer: lex.yy.c lexer.l
 	$(CC) $(CFLAGS) $@ lex.yy.c -lfl
 
 clean:
-	rm lex.yy.c
+	rm lex.yy.c parser.output parser.tab.c

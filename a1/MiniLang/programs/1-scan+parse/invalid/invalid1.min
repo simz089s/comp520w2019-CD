@@ -1,0 +1,4 @@
+// int/float values with leading 0s disallowed
+
+var x: int = 0;
+x: int = 00;

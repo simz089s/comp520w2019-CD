@@ -35,13 +35,14 @@ void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
 %token tIF tELSE
 %token tWHILE
 %token tREAD tPRINT
+%token tCOLON
 %token tASSIGN
 %token tCOMMENT
 %token tADD tSUB tMUL tDIV
 %token tEQUALS tNEQUALS tGREATEREQ tLESSEQ tGREATER tLESS
 %token tAND tOR tNOT
 %token tNEG
-%token tEOF tEOL
+/*%token tEOF tEOL*/
 
 %left tOR
 %left tAND
@@ -56,11 +57,11 @@ void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
 
 %%
 
-program : stmts tEOF    { yyerror("End of file"); }
+program : stmts { }
         ;
 
-stmts   : %empty    { }
-        | stmt stmts { }
+stmts   : %empty        { }
+        | stmt stmts    { }
         ;
 
 stmt    : tREAD tLPAREN tIDENT tRPAREN tSEMICOLON /* read(x); */
@@ -68,22 +69,21 @@ stmt    : tREAD tLPAREN tIDENT tRPAREN tSEMICOLON /* read(x); */
         | decl
         | tIDENT tASSIGN expr tSEMICOLON /* x = 1+1; */
         | ifstmt
-        | elsestmt
         | whileloop
         ;
 
-decl    : tVAR tIDENT tSEMICOLON tBOOLTYPE tSEMICOLON
-        | tVAR tIDENT tSEMICOLON tINTTYPE tSEMICOLON
-        | tVAR tIDENT tSEMICOLON tFLOATTYPE tSEMICOLON
-        | tVAR tIDENT tSEMICOLON tSTRINGTYPE tSEMICOLON
-        | tVAR tIDENT tSEMICOLON tBOOLTYPE tASSIGN expr tSEMICOLON
-        | tVAR tIDENT tSEMICOLON tINTTYPE tASSIGN expr tSEMICOLON
-        | tVAR tIDENT tSEMICOLON tFLOATTYPE tASSIGN expr tSEMICOLON
-        | tVAR tIDENT tSEMICOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+decl    : tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
+        | tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
+        | tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
+        | tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
+        | tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+        | tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
+        | tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+        | tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
         ;
 
-ifstmt  : tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
-        | tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+ifstmt  : tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+        | tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
         ;
 
 elsestmt    : tELSE tLBRACE stmts tRBRACE
@@ -117,7 +117,7 @@ expr    : tIDENT
 
 %%
 
-int main() {
+/*int main() {
     yyparse();
     return 0;
-}
+}*/

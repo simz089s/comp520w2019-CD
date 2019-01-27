@@ -7,7 +7,7 @@ PARSEGEN=bison
 PARSEFLAGS=--verbose
 
 all:
-	#$(PARSEGEN) $(PARSEFLAGS) parser.y
+	$(PARSEGEN) $(PARSEFLAGS) parser.y
 	$(LEXGEN) lexer.l
 	$(CC) $(CFLAGS) MiniLang lex.yy.c -lfl
 

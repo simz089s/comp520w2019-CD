@@ -26,7 +26,7 @@ void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
 %token <bool_val> tBOOLTYPE
 %token <int_val> tINTTYPE
 %token <float_val> tFLOATTYPE
-%toekn <string_val> tSTRINGTYPE
+%token <string_val> tSTRINGTYPE
 %token <ident> tIDENT
 %token tLPAREN tRPAREN
 %token tLBRACE tRBRACE
@@ -67,6 +67,9 @@ stmt    : tREAD tLPAREN tIDENT tRPAREN tSEMICOLON /* read(x); */
         | tPRINT tLPAREN expr tRPAREN tSEMICOLON /* print(x); */
         | decl
         | tIDENT tASSIGN expr tSEMICOLON /* x = 1+1; */
+        | ifstmt
+        | elsestmt
+        | whileloop
         ;
 
 decl    : tVAR tIDENT tSEMICOLON tBOOLTYPE tSEMICOLON
@@ -79,15 +82,38 @@ decl    : tVAR tIDENT tSEMICOLON tBOOLTYPE tSEMICOLON
         | tVAR tIDENT tSEMICOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
         ;
 
-exp : tIDENT
-    | tINTVAL
-    | exp tMUL exp
-    | exp tDIV exp
-    | exp tADD exp
-    | exp tSUB exp
-    | tLPAREN exp tRPAREN
-    | tSUB expr %prec tNEG
-    ;
+ifstmt  : tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+        | tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+        ;
+
+elsestmt    : tELSE tLBRACE stmts tRBRACE
+            | tELSE ifstmt
+            ;
+
+whileloop   : tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+            ;
+
+expr    : tIDENT
+        | tBOOLTYPE
+        | tINTTYPE
+        | tFLOATTYPE
+        | tSTRINGTYPE
+        | tNEG expr %prec tNEG
+        | tNOT expr %prec tNOT
+        | tLPAREN exp tRPAREN
+        | expr tMUL expr
+        | expr tDIV expr
+        | expr tADD expr
+        | expr tSUB expr
+        | expr tGREATEREQ expr
+        | expr tLESSEQ expr
+        | expr tGREATER expr
+        | expr tLESS expr
+        | expr tEQUALS expr
+        | expr tNEQUALS expr
+        | expr tAND expr
+        | expr tOR expr
+        ;
 
 %%
 

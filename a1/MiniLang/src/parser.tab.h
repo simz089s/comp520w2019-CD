@@ -70,19 +70,20 @@ extern int yydebug;
     tASSIGN = 280,
     tCOMMENT = 281,
     tADD = 282,
-    tSUB = 283,
-    tMUL = 284,
-    tDIV = 285,
-    tEQUALS = 286,
-    tNEQUALS = 287,
-    tGREATEREQ = 288,
-    tLESSEQ = 289,
-    tGREATER = 290,
-    tLESS = 291,
-    tAND = 292,
-    tOR = 293,
-    tNOT = 294,
-    tNEG = 295
+    tMUL = 283,
+    tDIV = 284,
+    tEQUALS = 285,
+    tNEQUALS = 286,
+    tGREATEREQ = 287,
+    tLESSEQ = 288,
+    tGREATER = 289,
+    tLESS = 290,
+    tAND = 291,
+    tOR = 292,
+    tNOT = 293,
+    tMINUS = 294,
+    tSUB = 295,
+    tNEG = 296
   };
 #endif
 
@@ -91,7 +92,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 18 "parser.y" /* yacc.c:1909  */
+#line 21 "parser.y" /* yacc.c:1909  */
 
     bool bool_val;
     int int_val;
@@ -99,7 +100,7 @@ union YYSTYPE
     char* string_val;
     char* ident;
 
-#line 103 "parser.tab.h" /* yacc.c:1909  */
+#line 104 "parser.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

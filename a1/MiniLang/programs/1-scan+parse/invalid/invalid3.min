@@ -1,1 +1,4 @@
+// Invalid character in string
 
+var s: string = "hello";
+s = "é";

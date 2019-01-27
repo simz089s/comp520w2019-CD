@@ -1,1 +1,3 @@
+// Declaration without type
 
+var x = 0;

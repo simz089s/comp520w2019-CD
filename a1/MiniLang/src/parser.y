@@ -8,7 +8,10 @@ extern int yylineno;
 
 int yylex();
 
-void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
+void yyerror(const char* s) {
+    fprintf(stderr, "Error: (line %d) Parse: invalid parse '%s'\n", yylineno, yytext);
+    exit(1);
+}
 
 %}
 
@@ -42,11 +45,12 @@ void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
 %token tCOLON
 %token tASSIGN
 %token tCOMMENT
-%token tADD tSUB tMUL tDIV
+%token tADD /*tSUB*/ tMUL tDIV
 %token tEQUALS tNEQUALS tGREATEREQ tLESSEQ tGREATER tLESS
 %token tAND tOR tNOT
-%token tNEG
-/*%token tEOF tEOL*/
+%token tMINUS
+/*%token tNEG
+%token tEOF tEOL*/
 
 %left tOR
 %left tAND
@@ -104,13 +108,13 @@ expr    : tIDENT
         | tINTVAL
         | tFLOATVAL
         | tSTRINGVAL
-        | tNEG expr %prec tNEG
-        | tNOT expr %prec tNOT
+        | tMINUS expr
+        | tNOT expr
         | tLPAREN expr tRPAREN
         | expr tMUL expr
         | expr tDIV expr
         | expr tADD expr
-        | expr tSUB expr
+        | expr tMINUS expr
         | expr tGREATEREQ expr
         | expr tLESSEQ expr
         | expr tGREATER expr

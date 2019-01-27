@@ -51,7 +51,7 @@ ALPHANUM [a-zA-Z0-9]
 ";" { if (tokens_mode) printf("End of statement semicolon: %s\n", yytext); return tSEMICOLON; }
 
 "+"     { if (tokens_mode) printf("Plus\n"); return tADD; }
-"-"     { if (tokens_mode) printf("Minus\n"); return tSUB; }
+"-"     { if (tokens_mode) printf("Minus\n"); return tMINUS; }
 "*"     { if (tokens_mode) printf("Multiply\n"); return tMUL; }
 "/"     { if (tokens_mode) printf("Divide\n"); return tDIV; }
 "("     { if (tokens_mode) printf("Left parenthesis\n"); return tLPAREN; }
@@ -70,7 +70,7 @@ ALPHANUM [a-zA-Z0-9]
     return tFLOATVAL;
 }
 
-(0[^0-9])|([1-9]{DIGITS}) {
+0|([1-9]{DIGITS}) {
     if (tokens_mode) printf("Integer constant: %s\n", yytext);
     return tINTVAL;
 }
@@ -80,13 +80,13 @@ ALPHANUM [a-zA-Z0-9]
     return tIDENT;
 }
 
-\"[ {ALPHANUM}{SYMBOL}{ESCAPE}]*\" {
+\"([ a-zA-Z0-9~@\#\$%^&*\-+\/`<>=\|'.,;:!?{}\[\]()']|{ESCAPE})*\" {
     if (tokens_mode) printf("String: %s\n", yytext);
     return tSTRINGVAL;
 }
 
 . {
-    fprintf(stderr, "Error: (line %d) unexpected character '%s'\n", yylineno, yytext);
+    fprintf(stderr, "Error: (line %d) Scan: unexpected character '%s'\n", yylineno, yytext);
     exit(1);
 }
 

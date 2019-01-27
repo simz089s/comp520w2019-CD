@@ -19,4 +19,4 @@ lexer: lex.yy.c lexer.l
 	$(CC) $(CFLAGS) $@ lex.yy.c -lfl
 
 clean:
-	echo "NOT Cleaning..."
+	rm lex.yy.c

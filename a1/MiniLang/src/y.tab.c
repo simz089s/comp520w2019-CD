@@ -76,7 +76,7 @@ int yylex();
 void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
 
 
-#line 80 "parser.tab.c" /* yacc.c:339  */
+#line 80 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -95,9 +95,9 @@ void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
 #endif
 
 /* In a future release of Bison, this section will be replaced
-   by #include "parser.tab.h".  */
-#ifndef YY_YY_PARSER_TAB_H_INCLUDED
-# define YY_YY_PARSER_TAB_H_INCLUDED
+   by #include "y.tab.h".  */
+#ifndef YY_YY_Y_TAB_H_INCLUDED
+# define YY_YY_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -151,6 +151,45 @@ extern int yydebug;
     tNEG = 295
   };
 #endif
+/* Tokens.  */
+#define tTRUE 258
+#define tFALSE 259
+#define tINTVAL 260
+#define tFLOATVAL 261
+#define tSTRINGVAL 262
+#define tBOOLTYPE 263
+#define tINTTYPE 264
+#define tFLOATTYPE 265
+#define tSTRINGTYPE 266
+#define tIDENT 267
+#define tLPAREN 268
+#define tRPAREN 269
+#define tLBRACE 270
+#define tRBRACE 271
+#define tSEMICOLON 272
+#define tVAR 273
+#define tIF 274
+#define tELSE 275
+#define tWHILE 276
+#define tREAD 277
+#define tPRINT 278
+#define tCOLON 279
+#define tASSIGN 280
+#define tCOMMENT 281
+#define tADD 282
+#define tSUB 283
+#define tMUL 284
+#define tDIV 285
+#define tEQUALS 286
+#define tNEQUALS 287
+#define tGREATEREQ 288
+#define tLESSEQ 289
+#define tGREATER 290
+#define tLESS 291
+#define tAND 292
+#define tOR 293
+#define tNOT 294
+#define tNEG 295
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -165,7 +204,7 @@ union YYSTYPE
     char* string_val;
     char* ident;
 
-#line 169 "parser.tab.c" /* yacc.c:355  */
+#line 208 "y.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -192,11 +231,11 @@ extern YYSTYPE yylval;
 extern YYLTYPE yylloc;
 int yyparse (void);
 
-#endif /* !YY_YY_PARSER_TAB_H_INCLUDED  */
+#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 200 "parser.tab.c" /* yacc.c:358  */
+#line 239 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1466,23 +1505,23 @@ yyreduce:
         case 2:
 #line 64 "parser.y" /* yacc.c:1646  */
     { }
-#line 1470 "parser.tab.c" /* yacc.c:1646  */
+#line 1509 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
 #line 67 "parser.y" /* yacc.c:1646  */
     { }
-#line 1476 "parser.tab.c" /* yacc.c:1646  */
+#line 1515 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
 #line 68 "parser.y" /* yacc.c:1646  */
     { }
-#line 1482 "parser.tab.c" /* yacc.c:1646  */
+#line 1521 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1486 "parser.tab.c" /* yacc.c:1646  */
+#line 1525 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

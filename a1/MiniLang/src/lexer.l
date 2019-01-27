@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "parser.tab.c"
+
 bool tokens_mode = false;
 
 %}
@@ -26,56 +28,62 @@ ALPHANUM [a-zA-Z0-9]
 
 "//".* {
     if (tokens_mode) printf("Comment: %s\n", yytext);
+    return tCOMMENT;
 }
 
-"var"       { if (tokens_mode) printf("Keyword: var\n"); }
-"float"     { if (tokens_mode) printf("Keyword: float\n"); }
-"int"       { if (tokens_mode) printf("Keyword: int\n"); }
-"string"    { if (tokens_mode) printf("Keyword: string\n"); }
-"boolean"   { if (tokens_mode) printf("Keyword: boolean\n"); }
-"if"        { if (tokens_mode) printf("Keyword: if\n"); }
-"else"      { if (tokens_mode) printf("Keyword: else\n"); }
-"while"     { if (tokens_mode) printf("Keyword: while\n"); }
-"read"      { if (tokens_mode) printf("Keyword: read\n"); }
-"print"     { if (tokens_mode) printf("Keyword: print\n"); }
-"true"      { if (tokens_mode) printf("Keyword: boolean value true\n"); }
-"false"     { if (tokens_mode) printf("Keyword: boolean value false\n"); }
+"var"       { if (tokens_mode) printf("Keyword: var\n"); return tVAR; }
+"float"     { if (tokens_mode) printf("Keyword: float\n"); return tFLOATTYPE; }
+"int"       { if (tokens_mode) printf("Keyword: int\n"); return tINTTYPE; }
+"string"    { if (tokens_mode) printf("Keyword: string\n"); return tSTRINGTYPE; }
+"boolean"   { if (tokens_mode) printf("Keyword: boolean\n"); return tBOOLTYPE; }
+"if"        { if (tokens_mode) printf("Keyword: if\n"); return tIF; }
+"else"      { if (tokens_mode) printf("Keyword: else\n"); return tELSE; }
+"while"     { if (tokens_mode) printf("Keyword: while\n"); return tWHILE; }
+"read"      { if (tokens_mode) printf("Keyword: read\n"); return tREAD; }
+"print"     { if (tokens_mode) printf("Keyword: print\n"); return tPRINT; }
+"true"      { if (tokens_mode) printf("Keyword: boolean value true\n"); return tTRUE; }
+"false"     { if (tokens_mode) printf("Keyword: boolean value false\n"); return tFALSE; }
 
-":" { if (tokens_mode) printf("Assignment identifier/type colon separator: %s\n", yytext); }
-"=" { if (tokens_mode) printf("Assignment operator: %s\n", yytext); }
-"{" { if (tokens_mode) printf("Left curly brace\n"); }
-"}" { if (tokens_mode) printf("Right curly brace\n"); }
-";" { if (tokens_mode) printf("End of statement semicolon: %s\n", yytext); }
+":" { if (tokens_mode) printf("Assignment identifier/type colon separator: %s\n", yytext); return tCOLON; }
+"=" { if (tokens_mode) printf("Assignment operator: %s\n", yytext); return tASSIGN; }
+"{" { if (tokens_mode) printf("Left curly brace\n"); return tLBRACE; }
+"}" { if (tokens_mode) printf("Right curly brace\n"); return tRBRACE; }
+";" { if (tokens_mode) printf("End of statement semicolon: %s\n", yytext); return tSEMICOLON; }
 
-"+"     { if (tokens_mode) printf("Plus\n"); }
-"-"     { if (tokens_mode) printf("Minus\n"); }
-"*"     { if (tokens_mode) printf("Multiply\n"); }
-"/"     { if (tokens_mode) printf("Divide\n"); }
-"("     { if (tokens_mode) printf("Left parenthesis\n"); }
-")"     { if (tokens_mode) printf("Right parenthesis\n"); }
-"=="    { if (tokens_mode) printf("Relational operator (binary): %s\n", yytext); }
-"!="    { if (tokens_mode) printf("Relational operator (binary): %s\n", yytext); }
-">="    { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); }
-"<="    { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); }
-">"     { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); }
-"<"     { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); }
-"&&"    { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); }
-"||"    { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); }
+"+"     { if (tokens_mode) printf("Plus\n"); return tADD; }
+"-"     { if (tokens_mode) printf("Minus\n"); return tSUB; }
+"*"     { if (tokens_mode) printf("Multiply\n"); return tMUL; }
+"/"     { if (tokens_mode) printf("Divide\n"); return tDIV; }
+"("     { if (tokens_mode) printf("Left parenthesis\n"); return tLPAREN; }
+")"     { if (tokens_mode) printf("Right parenthesis\n"); return tRPAREN; }
+"=="    { if (tokens_mode) printf("Relational operator (binary): %s\n", yytext); return tEQUALS; }
+"!="    { if (tokens_mode) printf("Relational operator (binary): %s\n", yytext); return tNEQUALS; }
+">="    { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); return tGREATEREQ; }
+"<="    { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); return tLESSEQ; }
+">"     { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); return tGREATER; }
+"<"     { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); return tLESS; }
+"&&"    { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); return tAND; }
+"||"    { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); return tOR; }
 
 (0|([1-9]{DIGITS}))\.{DIGITS} {
     if (tokens_mode) printf("Floating point number: %s\n", yytext);
+    return tFLOATVAL;
 }
 
 (0[^0-9])|([1-9]{DIGITS}) {
     if (tokens_mode) printf("Integer constant: %s\n", yytext);
+    return tINTVAL;
 }
 
 ({ALPHA}|_)({ALPHANUM}|_)* {
     if (tokens_mode) printf("Identifier: %s\n", yytext);
+    return tIDENT;
 }
 
 \"[ {ALPHANUM}{SYMBOL}{ESCAPE}]*\" {
-    if (tokens_mode) printf("String: %s\n", yytext); }
+    if (tokens_mode) printf("String: %s\n", yytext);
+    return tSTRINGVAL;
+}
 
 . {
     fprintf(stderr, "Error: (line %d) unexpected character '%s'\n", yylineno, yytext);

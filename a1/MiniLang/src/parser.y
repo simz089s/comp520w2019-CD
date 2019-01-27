@@ -23,10 +23,14 @@ void yyerror(const char* s) { fprintf(stderr, "Error: %s\n", s); }
     char* ident;
 }
 
-%token <bool_val> tBOOLTYPE
-%token <int_val> tINTTYPE
-%token <float_val> tFLOATTYPE
-%token <string_val> tSTRINGTYPE
+%token <bool_val> tTRUE tFALSE
+%token <int_val> tINTVAL
+%token <float_val> tFLOATVAL
+%token <string_val> tSTRINGVAL
+%token tBOOLTYPE
+%token tINTTYPE
+%token tFLOATTYPE
+%token tSTRINGTYPE
 %token <ident> tIDENT
 %token tLPAREN tRPAREN
 %token tLBRACE tRBRACE
@@ -70,6 +74,7 @@ stmt    : tREAD tLPAREN tIDENT tRPAREN tSEMICOLON /* read(x); */
         | tIDENT tASSIGN expr tSEMICOLON /* x = 1+1; */
         | ifstmt
         | whileloop
+        | tCOMMENT
         ;
 
 decl    : tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
@@ -94,10 +99,11 @@ whileloop   : tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
             ;
 
 expr    : tIDENT
-        | tBOOLTYPE
-        | tINTTYPE
-        | tFLOATTYPE
-        | tSTRINGTYPE
+        | tTRUE
+        | tFALSE
+        | tINTVAL
+        | tFLOATVAL
+        | tSTRINGVAL
         | tNEG expr %prec tNEG
         | tNOT expr %prec tNOT
         | tLPAREN expr tRPAREN

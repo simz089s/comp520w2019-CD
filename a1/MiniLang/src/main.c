@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
+
 #include "lex.yy.c"
-#include "parser.tab.c"
 
 extern bool tokens_mode;
 

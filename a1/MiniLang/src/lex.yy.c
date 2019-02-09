@@ -394,8 +394,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	yy_flex_strncpy( yytext, (yytext_ptr), yyleng + 1 ); \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 40
-#define YY_END_OF_BUFFER 41
+#define YY_NUM_RULES 41
+#define YY_END_OF_BUFFER 42
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -405,16 +405,16 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[96] =
     {   0,
-        0,    0,   41,   39,    2,    1,   39,   39,   39,   25,
-       26,   23,   21,   22,   24,   36,   36,   16,   20,   32,
-       17,   31,   37,   37,   37,   37,   37,   37,   37,   37,
-       37,   37,   37,   18,   39,   19,    2,    1,   28,    0,
-       38,    0,   33,    3,    0,   36,   30,   27,   29,   37,
-       37,   37,   37,   37,    9,   37,   37,   37,   37,   37,
-       37,   37,   34,    3,   35,   37,   37,   37,   37,    6,
-       37,   37,   37,   37,    4,   37,   37,   10,   37,   37,
-       37,   12,   37,   14,   37,   37,   15,    5,   13,   37,
-       11,   37,    7,    8,    0
+        0,    0,   42,   40,    2,    1,   35,   40,   40,   25,
+       26,   23,   21,   22,   24,   37,   37,   16,   20,   32,
+       17,   31,   38,   38,   38,   38,   38,   38,   38,   38,
+       38,   38,   38,   18,   40,   19,    2,    1,   28,    0,
+       39,    0,   33,    3,    0,   37,   30,   27,   29,   38,
+       38,   38,   38,   38,    9,   38,   38,   38,   38,   38,
+       38,   38,   34,    3,   36,   38,   38,   38,   38,    6,
+       38,   38,   38,   38,    4,   38,   38,   10,   38,   38,
+       38,   12,   38,   14,   38,   38,   15,    5,   13,   38,
+       11,   38,    7,    8,    0
 
     } ;
 
@@ -536,11 +536,11 @@ static yyconst flex_int16_t yy_chk[179] =
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static yyconst flex_int32_t yy_rule_can_match_eol[41] =
+static yyconst flex_int32_t yy_rule_can_match_eol[42] =
     {   0,
 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-    0,     };
+    0, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -1036,50 +1036,55 @@ YY_RULE_SETUP
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 67 "lexer.l"
+#line 66 "lexer.l"
+{ if (tokens_mode) printf("Logical operator (unary): %s\n", yytext); return tNOT; }
+	YY_BREAK
+case 36:
+YY_RULE_SETUP
+#line 68 "lexer.l"
 {
     if (tokens_mode) printf("Floating point number: %s\n", yytext);
     return tFLOATVAL;
 }
 	YY_BREAK
-case 36:
+case 37:
 YY_RULE_SETUP
-#line 72 "lexer.l"
+#line 73 "lexer.l"
 {
     if (tokens_mode) printf("Integer constant: %s\n", yytext);
     return tINTVAL;
 }
 	YY_BREAK
-case 37:
+case 38:
 YY_RULE_SETUP
-#line 77 "lexer.l"
+#line 78 "lexer.l"
 {
     if (tokens_mode) printf("Identifier: %s\n", yytext);
     return tIDENT;
 }
 	YY_BREAK
-case 38:
+case 39:
 YY_RULE_SETUP
-#line 82 "lexer.l"
+#line 83 "lexer.l"
 {
     if (tokens_mode) printf("String: %s\n", yytext);
     return tSTRINGVAL;
 }
 	YY_BREAK
-case 39:
+case 40:
 YY_RULE_SETUP
-#line 87 "lexer.l"
+#line 88 "lexer.l"
 {
     fprintf(stderr, "Error: (line %d) Scan: unexpected character '%s'\n", yylineno, yytext);
     exit(1);
 }
 	YY_BREAK
-case 40:
+case 41:
 YY_RULE_SETUP
-#line 92 "lexer.l"
+#line 93 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 1083 "lex.yy.c"
+#line 1088 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2092,7 +2097,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 92 "lexer.l"
+#line 93 "lexer.l"
 
 
 

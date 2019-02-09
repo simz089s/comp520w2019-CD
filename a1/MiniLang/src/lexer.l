@@ -10,7 +10,7 @@ bool tokens_mode = false;
 
 %}
 
-SYMBOL [~@\#\$%^&*\-+\/`<>=\|'.,;:!?{}\[\]()]
+SYMBOL [~@\#\$%^&*\-+\/`<>=_\|'.,;:!?{}\[\]()]
 SINGLEQUOTE ' /* Put here because editor's syntax highlighter can't properly lex lexer generator syntax :) */
 ESCAPE \\[abfnrtv\"\\]
 WHITESPACE [ \t\r]
@@ -63,6 +63,7 @@ ALPHANUM [a-zA-Z0-9]
 "<"     { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); return tLESS; }
 "&&"    { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); return tAND; }
 "||"    { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); return tOR; }
+"!"     { if (tokens_mode) printf("Logical operator (unary): %s\n", yytext); return tNOT; }
 
 (0|([1-9][0-9]*))\.[0-9]+ {
     if (tokens_mode) printf("Floating point number: %s\n", yytext);

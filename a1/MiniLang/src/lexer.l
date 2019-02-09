@@ -80,7 +80,7 @@ ALPHANUM [a-zA-Z0-9]
     return tIDENT;
 }
 
-\"([ a-zA-Z0-9~@\#\$%^&*\-+\/`<>=\|'.,;:!?{}\[\]()']|{ESCAPE})*\" {
+\"([ a-zA-Z0-9~@\#\$%^&*\-+\/`<>=_\|'.,;:!?{}\[\]()']|{ESCAPE})*\" {
     if (tokens_mode) printf("String: %s\n", yytext);
     return tSTRINGVAL;
 }

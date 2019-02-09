@@ -3,11 +3,12 @@
   exception Eof
   exception Error of string
   exception Syntax_error of string
-  open Printf
-
-  let line_num = ref 1
 
   let syntax_error msg = raise (Syntax_error (msg ^ " on line " ^ (string_of_int !line_num)))
+
+  open Parsing
+
+  let line_num = ref 1
 
   let keywords = [
     "var", T_VAR;

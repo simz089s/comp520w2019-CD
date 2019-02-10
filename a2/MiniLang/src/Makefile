@@ -1,12 +1,12 @@
 CC=gcc
-CFLAGS=-o
+CFLAGS=-Wall -pedantic
 
 PARSEFLAGS=--verbose --report=all --yacc --defines=parser.tab.c --output=parser.tab.h
 
-all: main.c
+all: main.c tree.c tree.h pretty_printer.c pretty_printer.h
 	flex -l lexer.l
 	bison --verbose --report=all -d parser.y
-	$(CC) main.c -o MiniLang -lfl
+	${CC} ${CFLAGS} $^ -o MiniLang -lfl
 
 #main: parser.tab.o lex.yy.o main.o
 #	$(CC) lex.yy.o parser.tab.o tree.o pretty.o eval.o main.o -o MiniLang -lfl

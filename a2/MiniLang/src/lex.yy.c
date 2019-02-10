@@ -570,9 +570,11 @@ char *yytext_ptr;
 
 #include "parser.tab.c"
 
+#define YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno;
+
 bool tokens_mode = false;
 
-#line 576 "lex.yy.c"
+#line 578 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -790,10 +792,10 @@ YY_DECL
 		}
 
 	{
-#line 23 "lexer.l"
+#line 24 "lexer.l"
 
 
-#line 797 "lex.yy.c"
+#line 799 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -863,217 +865,221 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 25 "lexer.l"
+#line 26 "lexer.l"
 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 26 "lexer.l"
+#line 27 "lexer.l"
 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 28 "lexer.l"
+#line 29 "lexer.l"
 {
     if (tokens_mode) printf("Comment: %s\n", yytext);
-    return tCOMMENT;
+    /*return tCOMMENT;*/
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 33 "lexer.l"
+#line 34 "lexer.l"
 { if (tokens_mode) printf("Keyword: var\n"); return tVAR; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 34 "lexer.l"
+#line 35 "lexer.l"
 { if (tokens_mode) printf("Keyword: float\n"); return tFLOATTYPE; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 35 "lexer.l"
+#line 36 "lexer.l"
 { if (tokens_mode) printf("Keyword: int\n"); return tINTTYPE; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 36 "lexer.l"
+#line 37 "lexer.l"
 { if (tokens_mode) printf("Keyword: string\n"); return tSTRINGTYPE; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 37 "lexer.l"
+#line 38 "lexer.l"
 { if (tokens_mode) printf("Keyword: boolean\n"); return tBOOLTYPE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 38 "lexer.l"
+#line 39 "lexer.l"
 { if (tokens_mode) printf("Keyword: if\n"); return tIF; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 39 "lexer.l"
+#line 40 "lexer.l"
 { if (tokens_mode) printf("Keyword: else\n"); return tELSE; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 40 "lexer.l"
+#line 41 "lexer.l"
 { if (tokens_mode) printf("Keyword: while\n"); return tWHILE; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 41 "lexer.l"
+#line 42 "lexer.l"
 { if (tokens_mode) printf("Keyword: read\n"); return tREAD; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 42 "lexer.l"
+#line 43 "lexer.l"
 { if (tokens_mode) printf("Keyword: print\n"); return tPRINT; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 43 "lexer.l"
+#line 44 "lexer.l"
 { if (tokens_mode) printf("Keyword: boolean value true\n"); return tTRUE; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 44 "lexer.l"
+#line 45 "lexer.l"
 { if (tokens_mode) printf("Keyword: boolean value false\n"); return tFALSE; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 46 "lexer.l"
+#line 47 "lexer.l"
 { if (tokens_mode) printf("Assignment identifier/type colon separator: %s\n", yytext); return tCOLON; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 47 "lexer.l"
+#line 48 "lexer.l"
 { if (tokens_mode) printf("Assignment operator: %s\n", yytext); return tASSIGN; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 48 "lexer.l"
+#line 49 "lexer.l"
 { if (tokens_mode) printf("Left curly brace\n"); return tLBRACE; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 49 "lexer.l"
+#line 50 "lexer.l"
 { if (tokens_mode) printf("Right curly brace\n"); return tRBRACE; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 50 "lexer.l"
+#line 51 "lexer.l"
 { if (tokens_mode) printf("End of statement semicolon: %s\n", yytext); return tSEMICOLON; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 52 "lexer.l"
+#line 53 "lexer.l"
 { if (tokens_mode) printf("Plus\n"); return tADD; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 53 "lexer.l"
+#line 54 "lexer.l"
 { if (tokens_mode) printf("Minus\n"); return tMINUS; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 54 "lexer.l"
+#line 55 "lexer.l"
 { if (tokens_mode) printf("Multiply\n"); return tMUL; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 55 "lexer.l"
+#line 56 "lexer.l"
 { if (tokens_mode) printf("Divide\n"); return tDIV; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 56 "lexer.l"
+#line 57 "lexer.l"
 { if (tokens_mode) printf("Left parenthesis\n"); return tLPAREN; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 57 "lexer.l"
+#line 58 "lexer.l"
 { if (tokens_mode) printf("Right parenthesis\n"); return tRPAREN; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 58 "lexer.l"
+#line 59 "lexer.l"
 { if (tokens_mode) printf("Relational operator (binary): %s\n", yytext); return tEQUALS; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 59 "lexer.l"
+#line 60 "lexer.l"
 { if (tokens_mode) printf("Relational operator (binary): %s\n", yytext); return tNEQUALS; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 60 "lexer.l"
+#line 61 "lexer.l"
 { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); return tGREATEREQ; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 61 "lexer.l"
+#line 62 "lexer.l"
 { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); return tLESSEQ; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 62 "lexer.l"
+#line 63 "lexer.l"
 { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); return tGREATER; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 63 "lexer.l"
+#line 64 "lexer.l"
 { if (tokens_mode) printf("Comparison operator (binary): %s\n", yytext); return tLESS; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 64 "lexer.l"
+#line 65 "lexer.l"
 { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); return tAND; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 65 "lexer.l"
+#line 66 "lexer.l"
 { if (tokens_mode) printf("Logical operator (binary): %s\n", yytext); return tOR; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 66 "lexer.l"
+#line 67 "lexer.l"
 { if (tokens_mode) printf("Logical operator (unary): %s\n", yytext); return tNOT; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 68 "lexer.l"
+#line 69 "lexer.l"
 {
     if (tokens_mode) printf("Floating point number: %s\n", yytext);
+    yylval.float_val = strtof(yytext, NULL);
     return tFLOATVAL;
 }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 73 "lexer.l"
+#line 75 "lexer.l"
 {
     if (tokens_mode) printf("Integer constant: %s\n", yytext);
+    yylval.int_val = strtol(yytext, NULL, 10);
     return tINTVAL;
 }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 78 "lexer.l"
+#line 81 "lexer.l"
 {
     if (tokens_mode) printf("Identifier: %s\n", yytext);
+    yylval.ident = strdup(yytext);
     return tIDENT;
 }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 83 "lexer.l"
+#line 87 "lexer.l"
 {
     if (tokens_mode) printf("String: %s\n", yytext);
+    yylval.string_val = strdup(yytext);
     return tSTRINGVAL;
 }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 88 "lexer.l"
+#line 93 "lexer.l"
 {
     fprintf(stderr, "Error: (line %d) Scan: unexpected character '%s'\n", yylineno, yytext);
     exit(1);
@@ -1081,10 +1087,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 93 "lexer.l"
+#line 98 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 1088 "lex.yy.c"
+#line 1094 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2097,7 +2103,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 93 "lexer.l"
+#line 98 "lexer.l"
 
 
 

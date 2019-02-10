@@ -6,6 +6,8 @@
 
 #include "parser.tab.c"
 
+#define YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno;
+
 bool tokens_mode = false;
 
 %}
@@ -26,7 +28,7 @@ ALPHANUM [a-zA-Z0-9]
 
 "//".* {
     if (tokens_mode) printf("Comment: %s\n", yytext);
-    return tCOMMENT;
+    /*return tCOMMENT;*/
 }
 
 "var"       { if (tokens_mode) printf("Keyword: var\n"); return tVAR; }
@@ -66,21 +68,25 @@ ALPHANUM [a-zA-Z0-9]
 
 (0|([1-9][0-9]*))\.[0-9]+ {
     if (tokens_mode) printf("Floating point number: %s\n", yytext);
+    yylval.float_val = strtof(yytext, NULL);
     return tFLOATVAL;
 }
 
 0|([1-9]{DIGIT}*) {
     if (tokens_mode) printf("Integer constant: %s\n", yytext);
+    yylval.int_val = strtol(yytext, NULL, 10);
     return tINTVAL;
 }
 
 ({ALPHA}|_)({ALPHANUM}|_)* {
     if (tokens_mode) printf("Identifier: %s\n", yytext);
+    yylval.ident = strdup(yytext);
     return tIDENT;
 }
 
 \"([ a-zA-Z0-9~@\#\$%^&*\-+\/`<>=_\|'.,;:!?{}\[\]()']|{ESCAPE})*\" {
     if (tokens_mode) printf("String: %s\n", yytext);
+    yylval.string_val = strdup(yytext);
     return tSTRINGVAL;
 }
 

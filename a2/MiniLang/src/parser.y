@@ -34,18 +34,28 @@ void yyerror(const char* s) {
     char* string_val;
     char* ident;
     EXPR* expr;
+    STMT* stmt;
+    STMTS* stmts;
+    Type type;
 }
 
-%type <stmts> program stmts
+%type <expr> expr
+%type <stmt> stmt
+%type <stmts> stmts
+
+%type <stmt> decl
+%type <stmt> ifstmt
+%type <stmt> elsestmt
+%type <stmt> whileloop
 
 %token <bool_val> tTRUE tFALSE
 %token <int_val> tINTVAL
 %token <float_val> tFLOATVAL
 %token <string_val> tSTRINGVAL
-%token tBOOLTYPE
-%token tINTTYPE
-%token tFLOATTYPE
-%token tSTRINGTYPE
+%token <type> tBOOLTYPE
+%token <type> tINTTYPE
+%token <type> tFLOATTYPE
+%token <type> tSTRINGTYPE
 %token <ident> tIDENT
 %token tLPAREN tRPAREN
 %token tLBRACE tRBRACE
@@ -56,7 +66,7 @@ void yyerror(const char* s) {
 %token tREAD tPRINT
 %token tCOLON
 %token tASSIGN
-%token tCOMMENT
+/*%token tCOMMENT*/
 %token tADD tMUL tDIV
 %token tMINUS
 %token tEQUALS tNEQUALS tGREATEREQ tLESSEQ tGREATER tLESS
@@ -88,7 +98,6 @@ stmt    : tREAD tLPAREN tIDENT tRPAREN tSEMICOLON   { $$ = genSTMT_read($3); } /
         | tIDENT tASSIGN expr tSEMICOLON            { $$ = genSTMT_assignment($1, $3); } /* x = 1+1; */
         | ifstmt
         | whileloop
-        | tCOMMENT
         ;
 
 decl    : tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON                   { $$ = genSTMT_declaration($2, $4); }

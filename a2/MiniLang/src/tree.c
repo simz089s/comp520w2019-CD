@@ -148,6 +148,7 @@ STMT* genSTMT_elseIf(STMT* ifStmt)
 	s->lineno = yylineno;
 	s->kind = k_statementKindElseIf;
 	s->val.elseIfStmt.ifStatement = ifStmt;
+	return s;
 }
 
 STMT* genSTMT_while(EXPR* pred, STMTS* stmts)

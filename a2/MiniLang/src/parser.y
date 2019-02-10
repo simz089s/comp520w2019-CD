@@ -78,7 +78,7 @@ void yyerror(const char* s) {
 program : stmts /* { root = $1; } */
         ;
 
-stmts   : %empty        { }
+stmts   : %empty        { $$ = NULL; }
         | stmt stmts    { $$ = genSTMTS($1, $2); }
         ;
 
@@ -102,14 +102,11 @@ decl    : tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON                   { $$ = genST
         ;
 
 ifstmt  : tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt   { $$ = genSTMT_if($3, $6, $8); }
-        | tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elseifstmt { $$ = genSTMT_elseIf($3, $6, $8); }
         ;
 
 elsestmt    : tELSE tLBRACE stmts tRBRACE   { $$ = genSTMT_else($3); }
+            | tELSE ifstmt                  { $$ = genSTMT_elseIf($2); }
             | %empty                        { $$ = NULL; }
-            ;
-
-elseifstmt  : tELSE ifstmt                  { $$ = genSTMT_elseIf($2); }
             ;
 
 whileloop   : tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE { $$ = genSTMT_while($3, $6); }

@@ -116,3 +116,81 @@ void prettyEXPR(EXPR* expr)
 			break;
 	}
 }
+
+void prettyType(Type type)
+{
+    switch (type) {
+        case boolType:
+            printf("boolean");
+            break;
+        case intType:
+            printf("int");
+            break;
+        case floatType:
+            printf("float");
+            break;
+        case stringType:
+            printf("string");
+            break;
+    }
+}
+
+void prettySTMT(STMT* stmt)
+{
+    switch (stmt->kind) {
+        case k_statementKindRead:
+            printf("print(%s);\n", stmt->val.read.identifier);
+            break;
+        case k_statementKindPrint:
+            printf("print(");
+            prettyEXPR(stmt->val.print.expression);
+            printf(");\n");
+            break;
+        case k_statementKindDeclaration:
+            printf("var %s: ", stmt->val.declaration.identifier);
+            prettyType(stmt->val.declaration.type);
+            printf(";\n");
+            break;
+        case k_statementKindDeclarationInitialized:
+            printf("var %s: ", stmt->val.declaration.identifier);
+            prettyType(stmt->val.declaration.type);
+            printf(" = ");
+            prettyEXPR(stmt->val.declarationInitialized.expression);
+            printf(";\n");
+            break;
+        case k_statementKindAssignment:
+            printf("%s = ", stmt->val.declaration.identifier);
+            prettyEXPR(stmt->val.declarationInitialized.expression);
+            printf(";\n");
+            break;
+        case k_statementKindIf:
+            printf("if (");
+            prettyEXPR(stmt->val.ifStmt.predicate);
+            printf(") {\n");
+            prettySTMTS(stmt->val.ifStmt.statements);
+            printf("}\n");
+            if (stmt->val.ifStmt.elseStmt != NULL) prettySTMT(stmt->val.ifStmt.elseStmt);
+            break;
+        case k_statementKindElse:
+            printf("else {\n");
+            prettySTMTS(stmt->val.elseStmt.statements);
+            printf("}\n");
+            break;
+        case k_statementKindElseIf:
+            printf("else ");
+            prettySTMT(stmt->val.elseIfStmt.ifStatement);
+            break;
+        case k_statementKindWhile:
+            printf("while (");
+            prettyEXPR(stmt->val.ifStmt.predicate);
+            printf(") {\n");
+            prettySTMTS(stmt->val.ifStmt.statements);
+            printf("}\n");
+            break;
+    }
+}
+
+void prettySTMTS(STMTS* stmts)
+{
+    while (stmts->statements != NULL) prettySTMT(stmts->statement);
+}

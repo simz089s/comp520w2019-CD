@@ -192,5 +192,9 @@ void prettySTMT(STMT* stmt)
 
 void prettySTMTS(STMTS* stmts)
 {
-    while (stmts->statements != NULL) prettySTMT(stmts->statement);
+    STMTS* current = stmts;
+    while (current->statements != NULL) {
+        prettySTMT(current->statement);
+        current = current->statements;
+    }
 }

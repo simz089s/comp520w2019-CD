@@ -8,7 +8,7 @@
 
 extern int yylineno;
 
-/* extern EXPR* root; */
+extern STMTS* root;
 
 int yylex();
 
@@ -85,7 +85,7 @@ void yyerror(const char* s) {
 
 %%
 
-program : stmts /* { root = $1; } */
+program : stmts { root = $1; }
         ;
 
 stmts   : %empty        { $$ = NULL; }
@@ -100,14 +100,14 @@ stmt    : tREAD tLPAREN tIDENT tRPAREN tSEMICOLON   { $$ = genSTMT_read($3); } /
         | whileloop
         ;
 
-decl    : tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON                   { $$ = genSTMT_declaration($2, $4); }
-        | tVAR tIDENT tCOLON tINTTYPE tSEMICOLON                    { $$ = genSTMT_declaration($2, $4); }
-        | tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON                  { $$ = genSTMT_declaration($2, $4); }
-        | tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON                 { $$ = genSTMT_declaration($2, $4); }
-        | tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON      { $$ = genSTMT_declarationInitialized($2, $4, $6); }
-        | tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON       { $$ = genSTMT_declarationInitialized($2, $4, $6); }
-        | tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON     { $$ = genSTMT_declarationInitialized($2, $4, $6); }
-        | tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON    { $$ = genSTMT_declarationInitialized($2, $4, $6); }
+decl    : tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON                   { $$ = genSTMT_declaration($2, boolType); }
+        | tVAR tIDENT tCOLON tINTTYPE tSEMICOLON                    { $$ = genSTMT_declaration($2, intType); }
+        | tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON                  { $$ = genSTMT_declaration($2, floatType); }
+        | tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON                 { $$ = genSTMT_declaration($2, stringType); }
+        | tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON      { $$ = genSTMT_declarationInitialized($2, boolType, $6); }
+        | tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON       { $$ = genSTMT_declarationInitialized($2, intType, $6); }
+        | tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON     { $$ = genSTMT_declarationInitialized($2, floatType, $6); }
+        | tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON    { $$ = genSTMT_declarationInitialized($2, stringType, $6); }
         ;
 
 ifstmt  : tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt   { $$ = genSTMT_if($3, $6, $8); }

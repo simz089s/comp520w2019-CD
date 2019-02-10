@@ -131,4 +131,6 @@ STMT* genSTMT_while(EXPR* pred, STMTS* stmts);
 
 STMTS* genSTMTS(STMT* stmt, STMTS* stmts);
 
+static STMTS* root;
+
 #endif /* TREE_H */

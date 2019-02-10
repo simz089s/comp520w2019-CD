@@ -8,7 +8,7 @@
 
 extern bool tokens_mode;
 
-extern STMTS* root;
+STMTS* root;
 
 int main(int argc, char* argv[]) {
     // printf("Mode: %s\n", argv[1]);

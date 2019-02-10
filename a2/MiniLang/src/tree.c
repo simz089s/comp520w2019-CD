@@ -38,7 +38,7 @@ EXPR* genEXPR_floatLiteral(float floatLiteral)
 {
     EXPR* e = malloc(sizeof(EXPR));
     e->lineno = yylineno;
-    e->kind = k_expressionKindBoolLiteral;
+    e->kind = k_expressionKindFloatLiteral;
     e->val.floatLiteral = floatLiteral;
     return e;
 }

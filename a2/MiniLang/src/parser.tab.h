@@ -39,6 +39,12 @@
 #if YYDEBUG
 extern int yydebug;
 #endif
+/* "%code requires" blocks.  */
+#line 26 "parser.y" /* yacc.c:1909  */
+
+	#include "tree.h"
+
+#line 48 "parser.tab.h" /* yacc.c:1909  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -68,10 +74,10 @@ extern int yydebug;
     tPRINT = 278,
     tCOLON = 279,
     tASSIGN = 280,
-    tCOMMENT = 281,
-    tADD = 282,
-    tMUL = 283,
-    tDIV = 284,
+    tADD = 281,
+    tMUL = 282,
+    tDIV = 283,
+    tMINUS = 284,
     tEQUALS = 285,
     tNEQUALS = 286,
     tGREATEREQ = 287,
@@ -81,9 +87,8 @@ extern int yydebug;
     tAND = 291,
     tOR = 292,
     tNOT = 293,
-    tMINUS = 294,
-    tSUB = 295,
-    tNEG = 296
+    tSUB = 294,
+    tNEG = 295
   };
 #endif
 
@@ -92,15 +97,19 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 21 "parser.y" /* yacc.c:1909  */
+#line 30 "parser.y" /* yacc.c:1909  */
 
     bool bool_val;
     int int_val;
     float float_val;
     char* string_val;
     char* ident;
+    EXPR* expr;
+    STMT* stmt;
+    STMTS* stmts;
+    Type type;
 
-#line 104 "parser.tab.h" /* yacc.c:1909  */
+#line 113 "parser.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

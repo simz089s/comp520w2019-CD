@@ -1,6 +1,8 @@
 #ifndef TREE_H
 #define TREE_H
 
+#include <stdbool.h>
+
 typedef enum {
 	k_expressionKindIdentifier,
     k_expressionKindBoolLiteral,
@@ -9,8 +11,6 @@ typedef enum {
     k_expressionKindStringLiteral,
     k_expressionKindMinus,
     k_expressionKindNot,
-    k_expressionKindLParen,
-    k_expressionKindRParen,
 	k_expressionKindMultiplication,
 	k_expressionKindDivision,
 	k_expressionKindAddition,
@@ -40,6 +40,7 @@ typedef enum {
     k_statementKindAssignment,
     k_statementKindIf,
     k_statementKindElse,
+    k_statementKindElseIf,
     k_statementKindWhile
 } StatementKind;
 
@@ -90,14 +91,18 @@ struct STMT {
         struct {
             EXPR* predicate;
             STMTS* statements;
-        } ifstmt;
+            STMT* elseStmt;
+        } ifStmt;
         struct {
             STMTS* statements;
-        } elsestmt;
+        } elseStmt;
+        struct {
+            STMT* ifStatement;
+        } elseIfStmt;
         struct {
             EXPR* predicate;
             STMTS* statements;
-        } whilestmt;
+        } whileStmt;
 	} val;
 };
 
@@ -119,10 +124,13 @@ STMT* genSTMT_print(EXPR* expr);
 STMT* genSTMT_declaration(char* ident, Type type);
 STMT* genSTMT_declarationInitialized(char* ident, Type type, EXPR* expr);
 STMT* genSTMT_assignment(char* ident, EXPR* expr);
-STMT* genSTMT_if(EXPR* pred, STMTS* stmts);
+STMT* genSTMT_if(EXPR* pred, STMTS* stmts, STMT* elseStmt);
 STMT* genSTMT_else(STMTS* stmts);
+STMT* genSTMT_elseIf(STMT* ifStmt);
 STMT* genSTMT_while(EXPR* pred, STMTS* stmts);
 
 STMTS* genSTMTS(STMT* stmt, STMTS* stmts);
+
+static STMTS* root;
 
 #endif /* TREE_H */

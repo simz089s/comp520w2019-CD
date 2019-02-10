@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
+
 #include "tree.h"
 
 extern int yylineno;
@@ -121,13 +122,14 @@ STMT* genSTMT_assignment(char* ident, EXPR* expr)
 	return s;
 }
 
-STMT* genSTMT_if(EXPR* pred, STMTS* stmts)
+STMT* genSTMT_if(EXPR* pred, STMTS* stmts, STMT* elseStmt)
 {
 	STMT* s = malloc(sizeof(STMT));
 	s->lineno = yylineno;
 	s->kind = k_statementKindIf;
-	s->val.ifstmt.predicate = pred;
-	s->val.ifstmt.statements = stmts;
+	s->val.ifStmt.predicate = pred;
+	s->val.ifStmt.statements = stmts;
+	s->val.ifStmt.elseStmt = elseStmt;
 	return s;
 }
 
@@ -136,7 +138,16 @@ STMT* genSTMT_else(STMTS* stmts)
 	STMT* s = malloc(sizeof(STMT));
 	s->lineno = yylineno;
 	s->kind = k_statementKindElse;
-	s->val.elsestmt.statements = stmts;
+	s->val.elseStmt.statements = stmts;
+	return s;
+}
+
+STMT* genSTMT_elseIf(STMT* ifStmt)
+{
+	STMT* s = malloc(sizeof(STMT));
+	s->lineno = yylineno;
+	s->kind = k_statementKindElseIf;
+	s->val.elseIfStmt.ifStatement = ifStmt;
 	return s;
 }
 
@@ -145,8 +156,8 @@ STMT* genSTMT_while(EXPR* pred, STMTS* stmts)
 	STMT* s = malloc(sizeof(STMT));
 	s->lineno = yylineno;
 	s->kind = k_statementKindWhile;
-	s->val.whilestmt.predicate = pred;
-	s->val.whilestmt.statements = stmts;
+	s->val.whileStmt.predicate = pred;
+	s->val.whileStmt.statements = stmts;
 	return s;
 }
 

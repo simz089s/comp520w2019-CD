@@ -4,11 +4,12 @@ Terminals unused in grammar
    tNEG
 
 
+State 37 conflicts: 12 shift/reduce
 State 38 conflicts: 1 shift/reduce
-State 39 conflicts: 12 shift/reduce
+State 61 conflicts: 1 shift/reduce
 State 62 conflicts: 1 shift/reduce
 State 63 conflicts: 1 shift/reduce
-State 64 conflicts: 1 shift/reduce
+State 64 conflicts: 12 shift/reduce
 State 65 conflicts: 1 shift/reduce
 State 66 conflicts: 1 shift/reduce
 State 67 conflicts: 1 shift/reduce
@@ -17,7 +18,6 @@ State 69 conflicts: 1 shift/reduce
 State 70 conflicts: 1 shift/reduce
 State 71 conflicts: 1 shift/reduce
 State 72 conflicts: 1 shift/reduce
-State 73 conflicts: 12 shift/reduce
 
 
 Grammar
@@ -35,115 +35,113 @@ Grammar
     7     | tIDENT tASSIGN expr tSEMICOLON
     8     | ifstmt
     9     | whileloop
-   10     | tCOMMENT
 
-   11 decl: tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
-   12     | tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
-   13     | tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
-   14     | tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
-   15     | tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
-   16     | tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
-   17     | tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
-   18     | tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+   10 decl: tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
+   11     | tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
+   12     | tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
+   13     | tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
+   14     | tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+   15     | tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
+   16     | tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+   17     | tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
 
-   19 ifstmt: tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
-   20       | tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+   18 ifstmt: tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
 
-   21 elsestmt: tELSE tLBRACE stmts tRBRACE
-   22         | tELSE ifstmt
+   19 elsestmt: tELSE tLBRACE stmts tRBRACE
+   20         | tELSE ifstmt
+   21         | %empty
 
-   23 whileloop: tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+   22 whileloop: tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
 
-   24 expr: tIDENT
-   25     | tTRUE
-   26     | tFALSE
-   27     | tINTVAL
-   28     | tFLOATVAL
-   29     | tSTRINGVAL
-   30     | tMINUS expr
-   31     | tNOT expr
-   32     | tLPAREN expr tRPAREN
-   33     | expr tMUL expr
-   34     | expr tDIV expr
-   35     | expr tADD expr
-   36     | expr tMINUS expr
-   37     | expr tGREATEREQ expr
-   38     | expr tLESSEQ expr
-   39     | expr tGREATER expr
-   40     | expr tLESS expr
-   41     | expr tEQUALS expr
-   42     | expr tNEQUALS expr
-   43     | expr tAND expr
-   44     | expr tOR expr
+   23 expr: tIDENT
+   24     | tTRUE
+   25     | tFALSE
+   26     | tINTVAL
+   27     | tFLOATVAL
+   28     | tSTRINGVAL
+   29     | tMINUS expr
+   30     | tNOT expr
+   31     | tLPAREN expr tRPAREN
+   32     | expr tMUL expr
+   33     | expr tDIV expr
+   34     | expr tADD expr
+   35     | expr tMINUS expr
+   36     | expr tGREATEREQ expr
+   37     | expr tLESSEQ expr
+   38     | expr tGREATER expr
+   39     | expr tLESS expr
+   40     | expr tEQUALS expr
+   41     | expr tNEQUALS expr
+   42     | expr tAND expr
+   43     | expr tOR expr
 
 
 Terminals, with rules where they appear
 
 $end (0) 0
 error (256)
-tTRUE (258) 25
-tFALSE (259) 26
-tINTVAL (260) 27
-tFLOATVAL (261) 28
-tSTRINGVAL (262) 29
-tBOOLTYPE (263) 11 15
-tINTTYPE (264) 12 16
-tFLOATTYPE (265) 13 17
-tSTRINGTYPE (266) 14 18
-tIDENT (267) 4 7 11 12 13 14 15 16 17 18 24
-tLPAREN (268) 4 5 19 20 23 32
-tRPAREN (269) 4 5 19 20 23 32
-tLBRACE (270) 19 20 21 23
-tRBRACE (271) 19 20 21 23
-tSEMICOLON (272) 4 5 7 11 12 13 14 15 16 17 18
-tVAR (273) 11 12 13 14 15 16 17 18
-tIF (274) 19 20
-tELSE (275) 21 22
-tWHILE (276) 23
+tTRUE (258) 24
+tFALSE (259) 25
+tINTVAL (260) 26
+tFLOATVAL (261) 27
+tSTRINGVAL (262) 28
+tBOOLTYPE (263) 10 14
+tINTTYPE (264) 11 15
+tFLOATTYPE (265) 12 16
+tSTRINGTYPE (266) 13 17
+tIDENT (267) 4 7 10 11 12 13 14 15 16 17 23
+tLPAREN (268) 4 5 18 22 31
+tRPAREN (269) 4 5 18 22 31
+tLBRACE (270) 18 19 22
+tRBRACE (271) 18 19 22
+tSEMICOLON (272) 4 5 7 10 11 12 13 14 15 16 17
+tVAR (273) 10 11 12 13 14 15 16 17
+tIF (274) 18
+tELSE (275) 19 20
+tWHILE (276) 22
 tREAD (277) 4
 tPRINT (278) 5
-tCOLON (279) 11 12 13 14 15 16 17 18
-tASSIGN (280) 7 15 16 17 18
-tCOMMENT (281) 10
-tADD (282) 35
-tMUL (283) 33
-tDIV (284) 34
-tEQUALS (285) 41
-tNEQUALS (286) 42
-tGREATEREQ (287) 37
-tLESSEQ (288) 38
-tGREATER (289) 39
-tLESS (290) 40
-tAND (291) 43
-tOR (292) 44
-tNOT (293) 31
-tMINUS (294) 30 36
-tSUB (295)
-tNEG (296)
+tCOLON (279) 10 11 12 13 14 15 16 17
+tASSIGN (280) 7 14 15 16 17
+tADD (281) 34
+tMUL (282) 32
+tDIV (283) 33
+tMINUS (284) 29 35
+tEQUALS (285) 40
+tNEQUALS (286) 41
+tGREATEREQ (287) 36
+tLESSEQ (288) 37
+tGREATER (289) 38
+tLESS (290) 39
+tAND (291) 42
+tOR (292) 43
+tNOT (293) 30
+tSUB (294)
+tNEG (295)
 
 
 Nonterminals, with rules where they appear
 
-$accept (42)
+$accept (41)
     on left: 0
-program (43)
+program (42)
     on left: 1, on right: 0
-stmts (44)
-    on left: 2 3, on right: 1 3 19 20 21 23
-stmt (45)
-    on left: 4 5 6 7 8 9 10, on right: 3
-decl (46)
-    on left: 11 12 13 14 15 16 17 18, on right: 6
-ifstmt (47)
-    on left: 19 20, on right: 8 22
-elsestmt (48)
-    on left: 21 22, on right: 19
-whileloop (49)
-    on left: 23, on right: 9
-expr (50)
-    on left: 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41
-    42 43 44, on right: 5 7 15 16 17 18 19 20 23 30 31 32 33 34 35
-    36 37 38 39 40 41 42 43 44
+stmts (43)
+    on left: 2 3, on right: 1 3 18 19 22
+stmt (44)
+    on left: 4 5 6 7 8 9, on right: 3
+decl (45)
+    on left: 10 11 12 13 14 15 16 17, on right: 6
+ifstmt (46)
+    on left: 18, on right: 8 20
+elsestmt (47)
+    on left: 19 20 21, on right: 18
+whileloop (48)
+    on left: 22, on right: 9
+expr (49)
+    on left: 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+    41 42 43, on right: 5 7 14 15 16 17 18 22 29 30 31 32 33 34 35
+    36 37 38 39 40 41 42 43
 
 
 State 0
@@ -158,109 +156,98 @@ State 0
     7     | . tIDENT tASSIGN expr tSEMICOLON
     8     | . ifstmt
     9     | . whileloop
-   10     | . tCOMMENT
-   11 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
-   12     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
-   13     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
-   14     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
-   15     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
-   16     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
-   17     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
-   18     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
-   19 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
-   20       | . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
-   23 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+   10 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
+   11     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
+   12     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
+   13     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
+   14     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+   15     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
+   16     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+   17     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+   18 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+   22 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
 
-    tIDENT    shift, and go to state 1
-    tVAR      shift, and go to state 2
-    tIF       shift, and go to state 3
-    tWHILE    shift, and go to state 4
-    tREAD     shift, and go to state 5
-    tPRINT    shift, and go to state 6
-    tCOMMENT  shift, and go to state 7
+    tIDENT  shift, and go to state 1
+    tVAR    shift, and go to state 2
+    tIF     shift, and go to state 3
+    tWHILE  shift, and go to state 4
+    tREAD   shift, and go to state 5
+    tPRINT  shift, and go to state 6
 
     $default  reduce using rule 2 (stmts)
 
-    program    go to state 8
-    stmts      go to state 9
-    stmt       go to state 10
-    decl       go to state 11
-    ifstmt     go to state 12
-    whileloop  go to state 13
+    program    go to state 7
+    stmts      go to state 8
+    stmt       go to state 9
+    decl       go to state 10
+    ifstmt     go to state 11
+    whileloop  go to state 12
 
 
 State 1
 
     7 stmt: tIDENT . tASSIGN expr tSEMICOLON
 
-    tASSIGN  shift, and go to state 14
+    tASSIGN  shift, and go to state 13
 
 
 State 2
 
-   11 decl: tVAR . tIDENT tCOLON tBOOLTYPE tSEMICOLON
-   12     | tVAR . tIDENT tCOLON tINTTYPE tSEMICOLON
-   13     | tVAR . tIDENT tCOLON tFLOATTYPE tSEMICOLON
-   14     | tVAR . tIDENT tCOLON tSTRINGTYPE tSEMICOLON
-   15     | tVAR . tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
-   16     | tVAR . tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
-   17     | tVAR . tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
-   18     | tVAR . tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+   10 decl: tVAR . tIDENT tCOLON tBOOLTYPE tSEMICOLON
+   11     | tVAR . tIDENT tCOLON tINTTYPE tSEMICOLON
+   12     | tVAR . tIDENT tCOLON tFLOATTYPE tSEMICOLON
+   13     | tVAR . tIDENT tCOLON tSTRINGTYPE tSEMICOLON
+   14     | tVAR . tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+   15     | tVAR . tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
+   16     | tVAR . tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+   17     | tVAR . tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
 
-    tIDENT  shift, and go to state 15
+    tIDENT  shift, and go to state 14
 
 
 State 3
 
-   19 ifstmt: tIF . tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
-   20       | tIF . tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+   18 ifstmt: tIF . tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
 
-    tLPAREN  shift, and go to state 16
+    tLPAREN  shift, and go to state 15
 
 
 State 4
 
-   23 whileloop: tWHILE . tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+   22 whileloop: tWHILE . tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
 
-    tLPAREN  shift, and go to state 17
+    tLPAREN  shift, and go to state 16
 
 
 State 5
 
     4 stmt: tREAD . tLPAREN tIDENT tRPAREN tSEMICOLON
 
-    tLPAREN  shift, and go to state 18
+    tLPAREN  shift, and go to state 17
 
 
 State 6
 
     5 stmt: tPRINT . tLPAREN expr tRPAREN tSEMICOLON
 
-    tLPAREN  shift, and go to state 19
+    tLPAREN  shift, and go to state 18
 
 
 State 7
 
-   10 stmt: tCOMMENT .
+    0 $accept: program . $end
 
-    $default  reduce using rule 10 (stmt)
+    $end  shift, and go to state 19
 
 
 State 8
-
-    0 $accept: program . $end
-
-    $end  shift, and go to state 20
-
-
-State 9
 
     1 program: stmts .
 
     $default  reduce using rule 1 (program)
 
 
-State 10
+State 9
 
     2 stmts: . %empty  [$end, tRBRACE]
     3      | . stmt stmts
@@ -271,470 +258,497 @@ State 10
     7     | . tIDENT tASSIGN expr tSEMICOLON
     8     | . ifstmt
     9     | . whileloop
-   10     | . tCOMMENT
-   11 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
-   12     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
-   13     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
-   14     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
-   15     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
-   16     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
-   17     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
-   18     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
-   19 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
-   20       | . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
-   23 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+   10 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
+   11     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
+   12     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
+   13     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
+   14     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+   15     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
+   16     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+   17     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+   18 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+   22 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
 
-    tIDENT    shift, and go to state 1
-    tVAR      shift, and go to state 2
-    tIF       shift, and go to state 3
-    tWHILE    shift, and go to state 4
-    tREAD     shift, and go to state 5
-    tPRINT    shift, and go to state 6
-    tCOMMENT  shift, and go to state 7
+    tIDENT  shift, and go to state 1
+    tVAR    shift, and go to state 2
+    tIF     shift, and go to state 3
+    tWHILE  shift, and go to state 4
+    tREAD   shift, and go to state 5
+    tPRINT  shift, and go to state 6
 
     $default  reduce using rule 2 (stmts)
 
-    stmts      go to state 21
-    stmt       go to state 10
-    decl       go to state 11
-    ifstmt     go to state 12
-    whileloop  go to state 13
+    stmts      go to state 20
+    stmt       go to state 9
+    decl       go to state 10
+    ifstmt     go to state 11
+    whileloop  go to state 12
 
 
-State 11
+State 10
 
     6 stmt: decl .
 
     $default  reduce using rule 6 (stmt)
 
 
-State 12
+State 11
 
     8 stmt: ifstmt .
 
     $default  reduce using rule 8 (stmt)
 
 
-State 13
+State 12
 
     9 stmt: whileloop .
 
     $default  reduce using rule 9 (stmt)
 
 
-State 14
+State 13
 
     7 stmt: tIDENT tASSIGN . expr tSEMICOLON
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
-    expr  go to state 31
+    expr  go to state 30
+
+
+State 14
+
+   10 decl: tVAR tIDENT . tCOLON tBOOLTYPE tSEMICOLON
+   11     | tVAR tIDENT . tCOLON tINTTYPE tSEMICOLON
+   12     | tVAR tIDENT . tCOLON tFLOATTYPE tSEMICOLON
+   13     | tVAR tIDENT . tCOLON tSTRINGTYPE tSEMICOLON
+   14     | tVAR tIDENT . tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+   15     | tVAR tIDENT . tCOLON tINTTYPE tASSIGN expr tSEMICOLON
+   16     | tVAR tIDENT . tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+   17     | tVAR tIDENT . tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+
+    tCOLON  shift, and go to state 31
 
 
 State 15
 
-   11 decl: tVAR tIDENT . tCOLON tBOOLTYPE tSEMICOLON
-   12     | tVAR tIDENT . tCOLON tINTTYPE tSEMICOLON
-   13     | tVAR tIDENT . tCOLON tFLOATTYPE tSEMICOLON
-   14     | tVAR tIDENT . tCOLON tSTRINGTYPE tSEMICOLON
-   15     | tVAR tIDENT . tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
-   16     | tVAR tIDENT . tCOLON tINTTYPE tASSIGN expr tSEMICOLON
-   17     | tVAR tIDENT . tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
-   18     | tVAR tIDENT . tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+   18 ifstmt: tIF tLPAREN . expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tCOLON  shift, and go to state 32
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
+    tNOT        shift, and go to state 29
+
+    expr  go to state 32
 
 
 State 16
 
-   19 ifstmt: tIF tLPAREN . expr tRPAREN tLBRACE stmts tRBRACE elsestmt
-   20       | tIF tLPAREN . expr tRPAREN tLBRACE stmts tRBRACE
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   22 whileloop: tWHILE tLPAREN . expr tRPAREN tLBRACE stmts tRBRACE
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 33
 
 
 State 17
 
-   23 whileloop: tWHILE tLPAREN . expr tRPAREN tLBRACE stmts tRBRACE
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+    4 stmt: tREAD tLPAREN . tIDENT tRPAREN tSEMICOLON
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
-    tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
-
-    expr  go to state 34
+    tIDENT  shift, and go to state 34
 
 
 State 18
 
-    4 stmt: tREAD tLPAREN . tIDENT tRPAREN tSEMICOLON
+    5 stmt: tPRINT tLPAREN . expr tRPAREN tSEMICOLON
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tIDENT  shift, and go to state 35
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
+    tNOT        shift, and go to state 29
+
+    expr  go to state 35
 
 
 State 19
-
-    5 stmt: tPRINT tLPAREN . expr tRPAREN tSEMICOLON
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
-
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
-    tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
-
-    expr  go to state 36
-
-
-State 20
 
     0 $accept: program $end .
 
     $default  accept
 
 
-State 21
+State 20
 
     3 stmts: stmt stmts .
 
     $default  reduce using rule 3 (stmts)
 
 
+State 21
+
+   24 expr: tTRUE .
+
+    $default  reduce using rule 24 (expr)
+
+
 State 22
 
-   25 expr: tTRUE .
+   25 expr: tFALSE .
 
     $default  reduce using rule 25 (expr)
 
 
 State 23
 
-   26 expr: tFALSE .
+   26 expr: tINTVAL .
 
     $default  reduce using rule 26 (expr)
 
 
 State 24
 
-   27 expr: tINTVAL .
+   27 expr: tFLOATVAL .
 
     $default  reduce using rule 27 (expr)
 
 
 State 25
 
-   28 expr: tFLOATVAL .
+   28 expr: tSTRINGVAL .
 
     $default  reduce using rule 28 (expr)
 
 
 State 26
 
-   29 expr: tSTRINGVAL .
+   23 expr: tIDENT .
 
-    $default  reduce using rule 29 (expr)
+    $default  reduce using rule 23 (expr)
 
 
 State 27
 
-   24 expr: tIDENT .
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   31     | tLPAREN . expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    $default  reduce using rule 24 (expr)
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
+    tNOT        shift, and go to state 29
+
+    expr  go to state 36
 
 
 State 28
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   32     | tLPAREN . expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   29     | tMINUS . expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 37
 
 
 State 29
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   31     | tNOT . expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   30     | tNOT . expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 38
 
 
 State 30
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   30     | tMINUS . expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+    7 stmt: tIDENT tASSIGN expr . tSEMICOLON
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
-    tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
-
-    expr  go to state 39
+    tSEMICOLON  shift, and go to state 39
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
+    tEQUALS     shift, and go to state 44
+    tNEQUALS    shift, and go to state 45
+    tGREATEREQ  shift, and go to state 46
+    tLESSEQ     shift, and go to state 47
+    tGREATER    shift, and go to state 48
+    tLESS       shift, and go to state 49
+    tAND        shift, and go to state 50
+    tOR         shift, and go to state 51
 
 
 State 31
 
-    7 stmt: tIDENT tASSIGN expr . tSEMICOLON
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   10 decl: tVAR tIDENT tCOLON . tBOOLTYPE tSEMICOLON
+   11     | tVAR tIDENT tCOLON . tINTTYPE tSEMICOLON
+   12     | tVAR tIDENT tCOLON . tFLOATTYPE tSEMICOLON
+   13     | tVAR tIDENT tCOLON . tSTRINGTYPE tSEMICOLON
+   14     | tVAR tIDENT tCOLON . tBOOLTYPE tASSIGN expr tSEMICOLON
+   15     | tVAR tIDENT tCOLON . tINTTYPE tASSIGN expr tSEMICOLON
+   16     | tVAR tIDENT tCOLON . tFLOATTYPE tASSIGN expr tSEMICOLON
+   17     | tVAR tIDENT tCOLON . tSTRINGTYPE tASSIGN expr tSEMICOLON
 
-    tSEMICOLON  shift, and go to state 40
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
-    tEQUALS     shift, and go to state 44
-    tNEQUALS    shift, and go to state 45
-    tGREATEREQ  shift, and go to state 46
-    tLESSEQ     shift, and go to state 47
-    tGREATER    shift, and go to state 48
-    tLESS       shift, and go to state 49
-    tAND        shift, and go to state 50
-    tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
+    tBOOLTYPE    shift, and go to state 52
+    tINTTYPE     shift, and go to state 53
+    tFLOATTYPE   shift, and go to state 54
+    tSTRINGTYPE  shift, and go to state 55
 
 
 State 32
 
-   11 decl: tVAR tIDENT tCOLON . tBOOLTYPE tSEMICOLON
-   12     | tVAR tIDENT tCOLON . tINTTYPE tSEMICOLON
-   13     | tVAR tIDENT tCOLON . tFLOATTYPE tSEMICOLON
-   14     | tVAR tIDENT tCOLON . tSTRINGTYPE tSEMICOLON
-   15     | tVAR tIDENT tCOLON . tBOOLTYPE tASSIGN expr tSEMICOLON
-   16     | tVAR tIDENT tCOLON . tINTTYPE tASSIGN expr tSEMICOLON
-   17     | tVAR tIDENT tCOLON . tFLOATTYPE tASSIGN expr tSEMICOLON
-   18     | tVAR tIDENT tCOLON . tSTRINGTYPE tASSIGN expr tSEMICOLON
+   18 ifstmt: tIF tLPAREN expr . tRPAREN tLBRACE stmts tRBRACE elsestmt
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    tBOOLTYPE    shift, and go to state 53
-    tINTTYPE     shift, and go to state 54
-    tFLOATTYPE   shift, and go to state 55
-    tSTRINGTYPE  shift, and go to state 56
+    tRPAREN     shift, and go to state 56
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
+    tEQUALS     shift, and go to state 44
+    tNEQUALS    shift, and go to state 45
+    tGREATEREQ  shift, and go to state 46
+    tLESSEQ     shift, and go to state 47
+    tGREATER    shift, and go to state 48
+    tLESS       shift, and go to state 49
+    tAND        shift, and go to state 50
+    tOR         shift, and go to state 51
 
 
 State 33
 
-   19 ifstmt: tIF tLPAREN expr . tRPAREN tLBRACE stmts tRBRACE elsestmt
-   20       | tIF tLPAREN expr . tRPAREN tLBRACE stmts tRBRACE
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   22 whileloop: tWHILE tLPAREN expr . tRPAREN tLBRACE stmts tRBRACE
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
     tRPAREN     shift, and go to state 57
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
     tEQUALS     shift, and go to state 44
     tNEQUALS    shift, and go to state 45
     tGREATEREQ  shift, and go to state 46
@@ -743,67 +757,67 @@ State 33
     tLESS       shift, and go to state 49
     tAND        shift, and go to state 50
     tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
 
 
 State 34
 
-   23 whileloop: tWHILE tLPAREN expr . tRPAREN tLBRACE stmts tRBRACE
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+    4 stmt: tREAD tLPAREN tIDENT . tRPAREN tSEMICOLON
 
-    tRPAREN     shift, and go to state 58
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
-    tEQUALS     shift, and go to state 44
-    tNEQUALS    shift, and go to state 45
-    tGREATEREQ  shift, and go to state 46
-    tLESSEQ     shift, and go to state 47
-    tGREATER    shift, and go to state 48
-    tLESS       shift, and go to state 49
-    tAND        shift, and go to state 50
-    tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
+    tRPAREN  shift, and go to state 58
 
 
 State 35
 
-    4 stmt: tREAD tLPAREN tIDENT . tRPAREN tSEMICOLON
+    5 stmt: tPRINT tLPAREN expr . tRPAREN tSEMICOLON
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    tRPAREN  shift, and go to state 59
+    tRPAREN     shift, and go to state 59
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
+    tEQUALS     shift, and go to state 44
+    tNEQUALS    shift, and go to state 45
+    tGREATEREQ  shift, and go to state 46
+    tLESSEQ     shift, and go to state 47
+    tGREATER    shift, and go to state 48
+    tLESS       shift, and go to state 49
+    tAND        shift, and go to state 50
+    tOR         shift, and go to state 51
 
 
 State 36
 
-    5 stmt: tPRINT tLPAREN expr . tRPAREN tSEMICOLON
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   31 expr: tLPAREN expr . tRPAREN
+   32     | expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
     tRPAREN     shift, and go to state 60
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
     tEQUALS     shift, and go to state 44
     tNEQUALS    shift, and go to state 45
     tGREATEREQ  shift, and go to state 46
@@ -812,29 +826,28 @@ State 36
     tLESS       shift, and go to state 49
     tAND        shift, and go to state 50
     tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
 
 
 State 37
 
-   32 expr: tLPAREN expr . tRPAREN
-   33     | expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   29 expr: tMINUS expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   32     | expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    tRPAREN     shift, and go to state 61
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
     tEQUALS     shift, and go to state 44
     tNEQUALS    shift, and go to state 45
     tGREATEREQ  shift, and go to state 46
@@ -843,1062 +856,714 @@ State 37
     tLESS       shift, and go to state 49
     tAND        shift, and go to state 50
     tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
+
+    tADD        [reduce using rule 29 (expr)]
+    tMUL        [reduce using rule 29 (expr)]
+    tDIV        [reduce using rule 29 (expr)]
+    tMINUS      [reduce using rule 29 (expr)]
+    tEQUALS     [reduce using rule 29 (expr)]
+    tNEQUALS    [reduce using rule 29 (expr)]
+    tGREATEREQ  [reduce using rule 29 (expr)]
+    tLESSEQ     [reduce using rule 29 (expr)]
+    tGREATER    [reduce using rule 29 (expr)]
+    tLESS       [reduce using rule 29 (expr)]
+    tAND        [reduce using rule 29 (expr)]
+    tOR         [reduce using rule 29 (expr)]
+    $default    reduce using rule 29 (expr)
 
 
 State 38
 
-   31 expr: tNOT expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   33     | expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   30 expr: tNOT expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   32     | expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    tMINUS  shift, and go to state 52
+    tMINUS  shift, and go to state 43
 
-    tMINUS    [reduce using rule 31 (expr)]
-    $default  reduce using rule 31 (expr)
+    tMINUS    [reduce using rule 30 (expr)]
+    $default  reduce using rule 30 (expr)
 
-    Conflict between rule 31 and token tADD resolved as reduce (tADD < tNOT).
-    Conflict between rule 31 and token tMUL resolved as reduce (tMUL < tNOT).
-    Conflict between rule 31 and token tDIV resolved as reduce (tDIV < tNOT).
-    Conflict between rule 31 and token tEQUALS resolved as reduce (tEQUALS < tNOT).
-    Conflict between rule 31 and token tNEQUALS resolved as reduce (tNEQUALS < tNOT).
-    Conflict between rule 31 and token tGREATEREQ resolved as reduce (tGREATEREQ < tNOT).
-    Conflict between rule 31 and token tLESSEQ resolved as reduce (tLESSEQ < tNOT).
-    Conflict between rule 31 and token tGREATER resolved as reduce (tGREATER < tNOT).
-    Conflict between rule 31 and token tLESS resolved as reduce (tLESS < tNOT).
-    Conflict between rule 31 and token tAND resolved as reduce (tAND < tNOT).
-    Conflict between rule 31 and token tOR resolved as reduce (tOR < tNOT).
+    Conflict between rule 30 and token tADD resolved as reduce (tADD < tNOT).
+    Conflict between rule 30 and token tMUL resolved as reduce (tMUL < tNOT).
+    Conflict between rule 30 and token tDIV resolved as reduce (tDIV < tNOT).
+    Conflict between rule 30 and token tEQUALS resolved as reduce (tEQUALS < tNOT).
+    Conflict between rule 30 and token tNEQUALS resolved as reduce (tNEQUALS < tNOT).
+    Conflict between rule 30 and token tGREATEREQ resolved as reduce (tGREATEREQ < tNOT).
+    Conflict between rule 30 and token tLESSEQ resolved as reduce (tLESSEQ < tNOT).
+    Conflict between rule 30 and token tGREATER resolved as reduce (tGREATER < tNOT).
+    Conflict between rule 30 and token tLESS resolved as reduce (tLESS < tNOT).
+    Conflict between rule 30 and token tAND resolved as reduce (tAND < tNOT).
+    Conflict between rule 30 and token tOR resolved as reduce (tOR < tNOT).
 
 
 State 39
-
-   30 expr: tMINUS expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   33     | expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
-
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
-    tEQUALS     shift, and go to state 44
-    tNEQUALS    shift, and go to state 45
-    tGREATEREQ  shift, and go to state 46
-    tLESSEQ     shift, and go to state 47
-    tGREATER    shift, and go to state 48
-    tLESS       shift, and go to state 49
-    tAND        shift, and go to state 50
-    tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
-
-    tADD        [reduce using rule 30 (expr)]
-    tMUL        [reduce using rule 30 (expr)]
-    tDIV        [reduce using rule 30 (expr)]
-    tEQUALS     [reduce using rule 30 (expr)]
-    tNEQUALS    [reduce using rule 30 (expr)]
-    tGREATEREQ  [reduce using rule 30 (expr)]
-    tLESSEQ     [reduce using rule 30 (expr)]
-    tGREATER    [reduce using rule 30 (expr)]
-    tLESS       [reduce using rule 30 (expr)]
-    tAND        [reduce using rule 30 (expr)]
-    tOR         [reduce using rule 30 (expr)]
-    tMINUS      [reduce using rule 30 (expr)]
-    $default    reduce using rule 30 (expr)
-
-
-State 40
 
     7 stmt: tIDENT tASSIGN expr tSEMICOLON .
 
     $default  reduce using rule 7 (stmt)
 
 
+State 40
+
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   34     | expr tADD . expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
+
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
+    tNOT        shift, and go to state 29
+
+    expr  go to state 61
+
+
 State 41
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   35     | expr tADD . expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   32     | expr tMUL . expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 62
 
 
 State 42
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   33     | expr tMUL . expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   33     | expr tDIV . expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 63
 
 
 State 43
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   34     | expr tDIV . expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   35     | expr tMINUS . expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 64
 
 
 State 44
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   41     | expr tEQUALS . expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   40     | expr tEQUALS . expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 65
 
 
 State 45
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   42     | expr tNEQUALS . expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   41     | expr tNEQUALS . expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 66
 
 
 State 46
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   37     | expr tGREATEREQ . expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   36     | expr tGREATEREQ . expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 67
 
 
 State 47
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   38     | expr tLESSEQ . expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   37     | expr tLESSEQ . expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 68
 
 
 State 48
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   39     | expr tGREATER . expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   38     | expr tGREATER . expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 69
 
 
 State 49
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   40     | expr tLESS . expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   39     | expr tLESS . expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 70
 
 
 State 50
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   43     | expr tAND . expr
-   44     | . expr tOR expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   42     | expr tAND . expr
+   43     | . expr tOR expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 71
 
 
 State 51
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
-   44     | expr tOR . expr
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
+   43     | expr tOR . expr
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
     tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
 
     expr  go to state 72
 
 
 State 52
 
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   36     | expr tMINUS . expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   10 decl: tVAR tIDENT tCOLON tBOOLTYPE . tSEMICOLON
+   14     | tVAR tIDENT tCOLON tBOOLTYPE . tASSIGN expr tSEMICOLON
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
-    tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
-
-    expr  go to state 73
+    tSEMICOLON  shift, and go to state 73
+    tASSIGN     shift, and go to state 74
 
 
 State 53
 
-   11 decl: tVAR tIDENT tCOLON tBOOLTYPE . tSEMICOLON
-   15     | tVAR tIDENT tCOLON tBOOLTYPE . tASSIGN expr tSEMICOLON
+   11 decl: tVAR tIDENT tCOLON tINTTYPE . tSEMICOLON
+   15     | tVAR tIDENT tCOLON tINTTYPE . tASSIGN expr tSEMICOLON
 
-    tSEMICOLON  shift, and go to state 74
-    tASSIGN     shift, and go to state 75
+    tSEMICOLON  shift, and go to state 75
+    tASSIGN     shift, and go to state 76
 
 
 State 54
 
-   12 decl: tVAR tIDENT tCOLON tINTTYPE . tSEMICOLON
-   16     | tVAR tIDENT tCOLON tINTTYPE . tASSIGN expr tSEMICOLON
+   12 decl: tVAR tIDENT tCOLON tFLOATTYPE . tSEMICOLON
+   16     | tVAR tIDENT tCOLON tFLOATTYPE . tASSIGN expr tSEMICOLON
 
-    tSEMICOLON  shift, and go to state 76
-    tASSIGN     shift, and go to state 77
+    tSEMICOLON  shift, and go to state 77
+    tASSIGN     shift, and go to state 78
 
 
 State 55
 
-   13 decl: tVAR tIDENT tCOLON tFLOATTYPE . tSEMICOLON
-   17     | tVAR tIDENT tCOLON tFLOATTYPE . tASSIGN expr tSEMICOLON
+   13 decl: tVAR tIDENT tCOLON tSTRINGTYPE . tSEMICOLON
+   17     | tVAR tIDENT tCOLON tSTRINGTYPE . tASSIGN expr tSEMICOLON
 
-    tSEMICOLON  shift, and go to state 78
-    tASSIGN     shift, and go to state 79
+    tSEMICOLON  shift, and go to state 79
+    tASSIGN     shift, and go to state 80
 
 
 State 56
 
-   14 decl: tVAR tIDENT tCOLON tSTRINGTYPE . tSEMICOLON
-   18     | tVAR tIDENT tCOLON tSTRINGTYPE . tASSIGN expr tSEMICOLON
+   18 ifstmt: tIF tLPAREN expr tRPAREN . tLBRACE stmts tRBRACE elsestmt
 
-    tSEMICOLON  shift, and go to state 80
-    tASSIGN     shift, and go to state 81
+    tLBRACE  shift, and go to state 81
 
 
 State 57
 
-   19 ifstmt: tIF tLPAREN expr tRPAREN . tLBRACE stmts tRBRACE elsestmt
-   20       | tIF tLPAREN expr tRPAREN . tLBRACE stmts tRBRACE
+   22 whileloop: tWHILE tLPAREN expr tRPAREN . tLBRACE stmts tRBRACE
 
     tLBRACE  shift, and go to state 82
 
 
 State 58
 
-   23 whileloop: tWHILE tLPAREN expr tRPAREN . tLBRACE stmts tRBRACE
+    4 stmt: tREAD tLPAREN tIDENT tRPAREN . tSEMICOLON
 
-    tLBRACE  shift, and go to state 83
+    tSEMICOLON  shift, and go to state 83
 
 
 State 59
 
-    4 stmt: tREAD tLPAREN tIDENT tRPAREN . tSEMICOLON
+    5 stmt: tPRINT tLPAREN expr tRPAREN . tSEMICOLON
 
     tSEMICOLON  shift, and go to state 84
 
 
 State 60
 
-    5 stmt: tPRINT tLPAREN expr tRPAREN . tSEMICOLON
+   31 expr: tLPAREN expr tRPAREN .
 
-    tSEMICOLON  shift, and go to state 85
+    $default  reduce using rule 31 (expr)
 
 
 State 61
 
-   32 expr: tLPAREN expr tRPAREN .
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   34     | expr tADD expr .  [tRPAREN, tSEMICOLON, tADD, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    $default  reduce using rule 32 (expr)
-
-
-State 62
-
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   35     | expr tADD expr .  [tRPAREN, tSEMICOLON, tADD, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
-
-    tMUL    shift, and go to state 42
-    tDIV    shift, and go to state 43
-    tMINUS  shift, and go to state 52
-
-    tMINUS    [reduce using rule 35 (expr)]
-    $default  reduce using rule 35 (expr)
-
-    Conflict between rule 35 and token tADD resolved as reduce (%left tADD).
-    Conflict between rule 35 and token tMUL resolved as shift (tADD < tMUL).
-    Conflict between rule 35 and token tDIV resolved as shift (tADD < tDIV).
-    Conflict between rule 35 and token tEQUALS resolved as reduce (tEQUALS < tADD).
-    Conflict between rule 35 and token tNEQUALS resolved as reduce (tNEQUALS < tADD).
-    Conflict between rule 35 and token tGREATEREQ resolved as reduce (tGREATEREQ < tADD).
-    Conflict between rule 35 and token tLESSEQ resolved as reduce (tLESSEQ < tADD).
-    Conflict between rule 35 and token tGREATER resolved as reduce (tGREATER < tADD).
-    Conflict between rule 35 and token tLESS resolved as reduce (tLESS < tADD).
-    Conflict between rule 35 and token tAND resolved as reduce (tAND < tADD).
-    Conflict between rule 35 and token tOR resolved as reduce (tOR < tADD).
-
-
-State 63
-
-   33 expr: expr . tMUL expr
-   33     | expr tMUL expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
-
-    tMINUS  shift, and go to state 52
-
-    tMINUS    [reduce using rule 33 (expr)]
-    $default  reduce using rule 33 (expr)
-
-    Conflict between rule 33 and token tADD resolved as reduce (tADD < tMUL).
-    Conflict between rule 33 and token tMUL resolved as reduce (%left tMUL).
-    Conflict between rule 33 and token tDIV resolved as reduce (%left tDIV).
-    Conflict between rule 33 and token tEQUALS resolved as reduce (tEQUALS < tMUL).
-    Conflict between rule 33 and token tNEQUALS resolved as reduce (tNEQUALS < tMUL).
-    Conflict between rule 33 and token tGREATEREQ resolved as reduce (tGREATEREQ < tMUL).
-    Conflict between rule 33 and token tLESSEQ resolved as reduce (tLESSEQ < tMUL).
-    Conflict between rule 33 and token tGREATER resolved as reduce (tGREATER < tMUL).
-    Conflict between rule 33 and token tLESS resolved as reduce (tLESS < tMUL).
-    Conflict between rule 33 and token tAND resolved as reduce (tAND < tMUL).
-    Conflict between rule 33 and token tOR resolved as reduce (tOR < tMUL).
-
-
-State 64
-
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   34     | expr tDIV expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
-
-    tMINUS  shift, and go to state 52
+    tMUL    shift, and go to state 41
+    tDIV    shift, and go to state 42
+    tMINUS  shift, and go to state 43
 
     tMINUS    [reduce using rule 34 (expr)]
     $default  reduce using rule 34 (expr)
 
-    Conflict between rule 34 and token tADD resolved as reduce (tADD < tDIV).
-    Conflict between rule 34 and token tMUL resolved as reduce (%left tMUL).
-    Conflict between rule 34 and token tDIV resolved as reduce (%left tDIV).
-    Conflict between rule 34 and token tEQUALS resolved as reduce (tEQUALS < tDIV).
-    Conflict between rule 34 and token tNEQUALS resolved as reduce (tNEQUALS < tDIV).
-    Conflict between rule 34 and token tGREATEREQ resolved as reduce (tGREATEREQ < tDIV).
-    Conflict between rule 34 and token tLESSEQ resolved as reduce (tLESSEQ < tDIV).
-    Conflict between rule 34 and token tGREATER resolved as reduce (tGREATER < tDIV).
-    Conflict between rule 34 and token tLESS resolved as reduce (tLESS < tDIV).
-    Conflict between rule 34 and token tAND resolved as reduce (tAND < tDIV).
-    Conflict between rule 34 and token tOR resolved as reduce (tOR < tDIV).
+    Conflict between rule 34 and token tADD resolved as reduce (%left tADD).
+    Conflict between rule 34 and token tMUL resolved as shift (tADD < tMUL).
+    Conflict between rule 34 and token tDIV resolved as shift (tADD < tDIV).
+    Conflict between rule 34 and token tEQUALS resolved as reduce (tEQUALS < tADD).
+    Conflict between rule 34 and token tNEQUALS resolved as reduce (tNEQUALS < tADD).
+    Conflict between rule 34 and token tGREATEREQ resolved as reduce (tGREATEREQ < tADD).
+    Conflict between rule 34 and token tLESSEQ resolved as reduce (tLESSEQ < tADD).
+    Conflict between rule 34 and token tGREATER resolved as reduce (tGREATER < tADD).
+    Conflict between rule 34 and token tLESS resolved as reduce (tLESS < tADD).
+    Conflict between rule 34 and token tAND resolved as reduce (tAND < tADD).
+    Conflict between rule 34 and token tOR resolved as reduce (tOR < tADD).
 
 
-State 65
+State 62
 
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   41     | expr tEQUALS expr .  [tRPAREN, tSEMICOLON, tEQUALS, tNEQUALS, tAND, tOR, tMINUS]
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   32 expr: expr . tMUL expr
+   32     | expr tMUL expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
-    tGREATEREQ  shift, and go to state 46
-    tLESSEQ     shift, and go to state 47
-    tGREATER    shift, and go to state 48
-    tLESS       shift, and go to state 49
-    tMINUS      shift, and go to state 52
+    tMINUS  shift, and go to state 43
 
-    tMINUS    [reduce using rule 41 (expr)]
-    $default  reduce using rule 41 (expr)
+    tMINUS    [reduce using rule 32 (expr)]
+    $default  reduce using rule 32 (expr)
 
-    Conflict between rule 41 and token tADD resolved as shift (tEQUALS < tADD).
-    Conflict between rule 41 and token tMUL resolved as shift (tEQUALS < tMUL).
-    Conflict between rule 41 and token tDIV resolved as shift (tEQUALS < tDIV).
-    Conflict between rule 41 and token tEQUALS resolved as reduce (%left tEQUALS).
-    Conflict between rule 41 and token tNEQUALS resolved as reduce (%left tNEQUALS).
-    Conflict between rule 41 and token tGREATEREQ resolved as shift (tEQUALS < tGREATEREQ).
-    Conflict between rule 41 and token tLESSEQ resolved as shift (tEQUALS < tLESSEQ).
-    Conflict between rule 41 and token tGREATER resolved as shift (tEQUALS < tGREATER).
-    Conflict between rule 41 and token tLESS resolved as shift (tEQUALS < tLESS).
-    Conflict between rule 41 and token tAND resolved as reduce (tAND < tEQUALS).
-    Conflict between rule 41 and token tOR resolved as reduce (tOR < tEQUALS).
+    Conflict between rule 32 and token tADD resolved as reduce (tADD < tMUL).
+    Conflict between rule 32 and token tMUL resolved as reduce (%left tMUL).
+    Conflict between rule 32 and token tDIV resolved as reduce (%left tDIV).
+    Conflict between rule 32 and token tEQUALS resolved as reduce (tEQUALS < tMUL).
+    Conflict between rule 32 and token tNEQUALS resolved as reduce (tNEQUALS < tMUL).
+    Conflict between rule 32 and token tGREATEREQ resolved as reduce (tGREATEREQ < tMUL).
+    Conflict between rule 32 and token tLESSEQ resolved as reduce (tLESSEQ < tMUL).
+    Conflict between rule 32 and token tGREATER resolved as reduce (tGREATER < tMUL).
+    Conflict between rule 32 and token tLESS resolved as reduce (tLESS < tMUL).
+    Conflict between rule 32 and token tAND resolved as reduce (tAND < tMUL).
+    Conflict between rule 32 and token tOR resolved as reduce (tOR < tMUL).
 
 
-State 66
+State 63
 
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   42     | expr tNEQUALS expr .  [tRPAREN, tSEMICOLON, tEQUALS, tNEQUALS, tAND, tOR, tMINUS]
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   33     | expr tDIV expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
-    tGREATEREQ  shift, and go to state 46
-    tLESSEQ     shift, and go to state 47
-    tGREATER    shift, and go to state 48
-    tLESS       shift, and go to state 49
-    tMINUS      shift, and go to state 52
+    tMINUS  shift, and go to state 43
 
-    tMINUS    [reduce using rule 42 (expr)]
-    $default  reduce using rule 42 (expr)
+    tMINUS    [reduce using rule 33 (expr)]
+    $default  reduce using rule 33 (expr)
 
-    Conflict between rule 42 and token tADD resolved as shift (tNEQUALS < tADD).
-    Conflict between rule 42 and token tMUL resolved as shift (tNEQUALS < tMUL).
-    Conflict between rule 42 and token tDIV resolved as shift (tNEQUALS < tDIV).
-    Conflict between rule 42 and token tEQUALS resolved as reduce (%left tEQUALS).
-    Conflict between rule 42 and token tNEQUALS resolved as reduce (%left tNEQUALS).
-    Conflict between rule 42 and token tGREATEREQ resolved as shift (tNEQUALS < tGREATEREQ).
-    Conflict between rule 42 and token tLESSEQ resolved as shift (tNEQUALS < tLESSEQ).
-    Conflict between rule 42 and token tGREATER resolved as shift (tNEQUALS < tGREATER).
-    Conflict between rule 42 and token tLESS resolved as shift (tNEQUALS < tLESS).
-    Conflict between rule 42 and token tAND resolved as reduce (tAND < tNEQUALS).
-    Conflict between rule 42 and token tOR resolved as reduce (tOR < tNEQUALS).
+    Conflict between rule 33 and token tADD resolved as reduce (tADD < tDIV).
+    Conflict between rule 33 and token tMUL resolved as reduce (%left tMUL).
+    Conflict between rule 33 and token tDIV resolved as reduce (%left tDIV).
+    Conflict between rule 33 and token tEQUALS resolved as reduce (tEQUALS < tDIV).
+    Conflict between rule 33 and token tNEQUALS resolved as reduce (tNEQUALS < tDIV).
+    Conflict between rule 33 and token tGREATEREQ resolved as reduce (tGREATEREQ < tDIV).
+    Conflict between rule 33 and token tLESSEQ resolved as reduce (tLESSEQ < tDIV).
+    Conflict between rule 33 and token tGREATER resolved as reduce (tGREATER < tDIV).
+    Conflict between rule 33 and token tLESS resolved as reduce (tLESS < tDIV).
+    Conflict between rule 33 and token tAND resolved as reduce (tAND < tDIV).
+    Conflict between rule 33 and token tOR resolved as reduce (tOR < tDIV).
 
 
-State 67
+State 64
 
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   37     | expr tGREATEREQ expr .  [tRPAREN, tSEMICOLON, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   35     | expr tMINUS expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    tADD    shift, and go to state 41
-    tMUL    shift, and go to state 42
-    tDIV    shift, and go to state 43
-    tMINUS  shift, and go to state 52
-
-    tMINUS    [reduce using rule 37 (expr)]
-    $default  reduce using rule 37 (expr)
-
-    Conflict between rule 37 and token tADD resolved as shift (tGREATEREQ < tADD).
-    Conflict between rule 37 and token tMUL resolved as shift (tGREATEREQ < tMUL).
-    Conflict between rule 37 and token tDIV resolved as shift (tGREATEREQ < tDIV).
-    Conflict between rule 37 and token tEQUALS resolved as reduce (tEQUALS < tGREATEREQ).
-    Conflict between rule 37 and token tNEQUALS resolved as reduce (tNEQUALS < tGREATEREQ).
-    Conflict between rule 37 and token tGREATEREQ resolved as reduce (%left tGREATEREQ).
-    Conflict between rule 37 and token tLESSEQ resolved as reduce (%left tLESSEQ).
-    Conflict between rule 37 and token tGREATER resolved as reduce (%left tGREATER).
-    Conflict between rule 37 and token tLESS resolved as reduce (%left tLESS).
-    Conflict between rule 37 and token tAND resolved as reduce (tAND < tGREATEREQ).
-    Conflict between rule 37 and token tOR resolved as reduce (tOR < tGREATEREQ).
-
-
-State 68
-
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   38     | expr tLESSEQ expr .  [tRPAREN, tSEMICOLON, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
-
-    tADD    shift, and go to state 41
-    tMUL    shift, and go to state 42
-    tDIV    shift, and go to state 43
-    tMINUS  shift, and go to state 52
-
-    tMINUS    [reduce using rule 38 (expr)]
-    $default  reduce using rule 38 (expr)
-
-    Conflict between rule 38 and token tADD resolved as shift (tLESSEQ < tADD).
-    Conflict between rule 38 and token tMUL resolved as shift (tLESSEQ < tMUL).
-    Conflict between rule 38 and token tDIV resolved as shift (tLESSEQ < tDIV).
-    Conflict between rule 38 and token tEQUALS resolved as reduce (tEQUALS < tLESSEQ).
-    Conflict between rule 38 and token tNEQUALS resolved as reduce (tNEQUALS < tLESSEQ).
-    Conflict between rule 38 and token tGREATEREQ resolved as reduce (%left tGREATEREQ).
-    Conflict between rule 38 and token tLESSEQ resolved as reduce (%left tLESSEQ).
-    Conflict between rule 38 and token tGREATER resolved as reduce (%left tGREATER).
-    Conflict between rule 38 and token tLESS resolved as reduce (%left tLESS).
-    Conflict between rule 38 and token tAND resolved as reduce (tAND < tLESSEQ).
-    Conflict between rule 38 and token tOR resolved as reduce (tOR < tLESSEQ).
-
-
-State 69
-
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   39     | expr tGREATER expr .  [tRPAREN, tSEMICOLON, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
-
-    tADD    shift, and go to state 41
-    tMUL    shift, and go to state 42
-    tDIV    shift, and go to state 43
-    tMINUS  shift, and go to state 52
-
-    tMINUS    [reduce using rule 39 (expr)]
-    $default  reduce using rule 39 (expr)
-
-    Conflict between rule 39 and token tADD resolved as shift (tGREATER < tADD).
-    Conflict between rule 39 and token tMUL resolved as shift (tGREATER < tMUL).
-    Conflict between rule 39 and token tDIV resolved as shift (tGREATER < tDIV).
-    Conflict between rule 39 and token tEQUALS resolved as reduce (tEQUALS < tGREATER).
-    Conflict between rule 39 and token tNEQUALS resolved as reduce (tNEQUALS < tGREATER).
-    Conflict between rule 39 and token tGREATEREQ resolved as reduce (%left tGREATEREQ).
-    Conflict between rule 39 and token tLESSEQ resolved as reduce (%left tLESSEQ).
-    Conflict between rule 39 and token tGREATER resolved as reduce (%left tGREATER).
-    Conflict between rule 39 and token tLESS resolved as reduce (%left tLESS).
-    Conflict between rule 39 and token tAND resolved as reduce (tAND < tGREATER).
-    Conflict between rule 39 and token tOR resolved as reduce (tOR < tGREATER).
-
-
-State 70
-
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   40     | expr tLESS expr .  [tRPAREN, tSEMICOLON, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
-
-    tADD    shift, and go to state 41
-    tMUL    shift, and go to state 42
-    tDIV    shift, and go to state 43
-    tMINUS  shift, and go to state 52
-
-    tMINUS    [reduce using rule 40 (expr)]
-    $default  reduce using rule 40 (expr)
-
-    Conflict between rule 40 and token tADD resolved as shift (tLESS < tADD).
-    Conflict between rule 40 and token tMUL resolved as shift (tLESS < tMUL).
-    Conflict between rule 40 and token tDIV resolved as shift (tLESS < tDIV).
-    Conflict between rule 40 and token tEQUALS resolved as reduce (tEQUALS < tLESS).
-    Conflict between rule 40 and token tNEQUALS resolved as reduce (tNEQUALS < tLESS).
-    Conflict between rule 40 and token tGREATEREQ resolved as reduce (%left tGREATEREQ).
-    Conflict between rule 40 and token tLESSEQ resolved as reduce (%left tLESSEQ).
-    Conflict between rule 40 and token tGREATER resolved as reduce (%left tGREATER).
-    Conflict between rule 40 and token tLESS resolved as reduce (%left tLESS).
-    Conflict between rule 40 and token tAND resolved as reduce (tAND < tLESS).
-    Conflict between rule 40 and token tOR resolved as reduce (tOR < tLESS).
-
-
-State 71
-
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   43     | expr tAND expr .  [tRPAREN, tSEMICOLON, tAND, tOR, tMINUS]
-   44     | expr . tOR expr
-
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
-    tEQUALS     shift, and go to state 44
-    tNEQUALS    shift, and go to state 45
-    tGREATEREQ  shift, and go to state 46
-    tLESSEQ     shift, and go to state 47
-    tGREATER    shift, and go to state 48
-    tLESS       shift, and go to state 49
-    tMINUS      shift, and go to state 52
-
-    tMINUS    [reduce using rule 43 (expr)]
-    $default  reduce using rule 43 (expr)
-
-    Conflict between rule 43 and token tADD resolved as shift (tAND < tADD).
-    Conflict between rule 43 and token tMUL resolved as shift (tAND < tMUL).
-    Conflict between rule 43 and token tDIV resolved as shift (tAND < tDIV).
-    Conflict between rule 43 and token tEQUALS resolved as shift (tAND < tEQUALS).
-    Conflict between rule 43 and token tNEQUALS resolved as shift (tAND < tNEQUALS).
-    Conflict between rule 43 and token tGREATEREQ resolved as shift (tAND < tGREATEREQ).
-    Conflict between rule 43 and token tLESSEQ resolved as shift (tAND < tLESSEQ).
-    Conflict between rule 43 and token tGREATER resolved as shift (tAND < tGREATER).
-    Conflict between rule 43 and token tLESS resolved as shift (tAND < tLESS).
-    Conflict between rule 43 and token tAND resolved as reduce (%left tAND).
-    Conflict between rule 43 and token tOR resolved as reduce (tOR < tAND).
-
-
-State 72
-
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
-   44     | expr tOR expr .  [tRPAREN, tSEMICOLON, tOR, tMINUS]
-
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
-    tEQUALS     shift, and go to state 44
-    tNEQUALS    shift, and go to state 45
-    tGREATEREQ  shift, and go to state 46
-    tLESSEQ     shift, and go to state 47
-    tGREATER    shift, and go to state 48
-    tLESS       shift, and go to state 49
-    tAND        shift, and go to state 50
-    tMINUS      shift, and go to state 52
-
-    tMINUS    [reduce using rule 44 (expr)]
-    $default  reduce using rule 44 (expr)
-
-    Conflict between rule 44 and token tADD resolved as shift (tOR < tADD).
-    Conflict between rule 44 and token tMUL resolved as shift (tOR < tMUL).
-    Conflict between rule 44 and token tDIV resolved as shift (tOR < tDIV).
-    Conflict between rule 44 and token tEQUALS resolved as shift (tOR < tEQUALS).
-    Conflict between rule 44 and token tNEQUALS resolved as shift (tOR < tNEQUALS).
-    Conflict between rule 44 and token tGREATEREQ resolved as shift (tOR < tGREATEREQ).
-    Conflict between rule 44 and token tLESSEQ resolved as shift (tOR < tLESSEQ).
-    Conflict between rule 44 and token tGREATER resolved as shift (tOR < tGREATER).
-    Conflict between rule 44 and token tLESS resolved as shift (tOR < tLESS).
-    Conflict between rule 44 and token tAND resolved as shift (tOR < tAND).
-    Conflict between rule 44 and token tOR resolved as reduce (%left tOR).
-
-
-State 73
-
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   36     | expr tMINUS expr .  [tRPAREN, tSEMICOLON, tADD, tMUL, tDIV, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR, tMINUS]
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
-
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
     tEQUALS     shift, and go to state 44
     tNEQUALS    shift, and go to state 45
     tGREATEREQ  shift, and go to state 46
@@ -1907,201 +1572,555 @@ State 73
     tLESS       shift, and go to state 49
     tAND        shift, and go to state 50
     tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
 
-    tADD        [reduce using rule 36 (expr)]
-    tMUL        [reduce using rule 36 (expr)]
-    tDIV        [reduce using rule 36 (expr)]
-    tEQUALS     [reduce using rule 36 (expr)]
-    tNEQUALS    [reduce using rule 36 (expr)]
-    tGREATEREQ  [reduce using rule 36 (expr)]
-    tLESSEQ     [reduce using rule 36 (expr)]
-    tGREATER    [reduce using rule 36 (expr)]
-    tLESS       [reduce using rule 36 (expr)]
-    tAND        [reduce using rule 36 (expr)]
-    tOR         [reduce using rule 36 (expr)]
-    tMINUS      [reduce using rule 36 (expr)]
-    $default    reduce using rule 36 (expr)
+    tADD        [reduce using rule 35 (expr)]
+    tMUL        [reduce using rule 35 (expr)]
+    tDIV        [reduce using rule 35 (expr)]
+    tMINUS      [reduce using rule 35 (expr)]
+    tEQUALS     [reduce using rule 35 (expr)]
+    tNEQUALS    [reduce using rule 35 (expr)]
+    tGREATEREQ  [reduce using rule 35 (expr)]
+    tLESSEQ     [reduce using rule 35 (expr)]
+    tGREATER    [reduce using rule 35 (expr)]
+    tLESS       [reduce using rule 35 (expr)]
+    tAND        [reduce using rule 35 (expr)]
+    tOR         [reduce using rule 35 (expr)]
+    $default    reduce using rule 35 (expr)
+
+
+State 65
+
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   40     | expr tEQUALS expr .  [tRPAREN, tSEMICOLON, tMINUS, tEQUALS, tNEQUALS, tAND, tOR]
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
+
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
+    tGREATEREQ  shift, and go to state 46
+    tLESSEQ     shift, and go to state 47
+    tGREATER    shift, and go to state 48
+    tLESS       shift, and go to state 49
+
+    tMINUS    [reduce using rule 40 (expr)]
+    $default  reduce using rule 40 (expr)
+
+    Conflict between rule 40 and token tADD resolved as shift (tEQUALS < tADD).
+    Conflict between rule 40 and token tMUL resolved as shift (tEQUALS < tMUL).
+    Conflict between rule 40 and token tDIV resolved as shift (tEQUALS < tDIV).
+    Conflict between rule 40 and token tEQUALS resolved as reduce (%left tEQUALS).
+    Conflict between rule 40 and token tNEQUALS resolved as reduce (%left tNEQUALS).
+    Conflict between rule 40 and token tGREATEREQ resolved as shift (tEQUALS < tGREATEREQ).
+    Conflict between rule 40 and token tLESSEQ resolved as shift (tEQUALS < tLESSEQ).
+    Conflict between rule 40 and token tGREATER resolved as shift (tEQUALS < tGREATER).
+    Conflict between rule 40 and token tLESS resolved as shift (tEQUALS < tLESS).
+    Conflict between rule 40 and token tAND resolved as reduce (tAND < tEQUALS).
+    Conflict between rule 40 and token tOR resolved as reduce (tOR < tEQUALS).
+
+
+State 66
+
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   41     | expr tNEQUALS expr .  [tRPAREN, tSEMICOLON, tMINUS, tEQUALS, tNEQUALS, tAND, tOR]
+   42     | expr . tAND expr
+   43     | expr . tOR expr
+
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
+    tGREATEREQ  shift, and go to state 46
+    tLESSEQ     shift, and go to state 47
+    tGREATER    shift, and go to state 48
+    tLESS       shift, and go to state 49
+
+    tMINUS    [reduce using rule 41 (expr)]
+    $default  reduce using rule 41 (expr)
+
+    Conflict between rule 41 and token tADD resolved as shift (tNEQUALS < tADD).
+    Conflict between rule 41 and token tMUL resolved as shift (tNEQUALS < tMUL).
+    Conflict between rule 41 and token tDIV resolved as shift (tNEQUALS < tDIV).
+    Conflict between rule 41 and token tEQUALS resolved as reduce (%left tEQUALS).
+    Conflict between rule 41 and token tNEQUALS resolved as reduce (%left tNEQUALS).
+    Conflict between rule 41 and token tGREATEREQ resolved as shift (tNEQUALS < tGREATEREQ).
+    Conflict between rule 41 and token tLESSEQ resolved as shift (tNEQUALS < tLESSEQ).
+    Conflict between rule 41 and token tGREATER resolved as shift (tNEQUALS < tGREATER).
+    Conflict between rule 41 and token tLESS resolved as shift (tNEQUALS < tLESS).
+    Conflict between rule 41 and token tAND resolved as reduce (tAND < tNEQUALS).
+    Conflict between rule 41 and token tOR resolved as reduce (tOR < tNEQUALS).
+
+
+State 67
+
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   36     | expr tGREATEREQ expr .  [tRPAREN, tSEMICOLON, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
+
+    tADD    shift, and go to state 40
+    tMUL    shift, and go to state 41
+    tDIV    shift, and go to state 42
+    tMINUS  shift, and go to state 43
+
+    tMINUS    [reduce using rule 36 (expr)]
+    $default  reduce using rule 36 (expr)
+
+    Conflict between rule 36 and token tADD resolved as shift (tGREATEREQ < tADD).
+    Conflict between rule 36 and token tMUL resolved as shift (tGREATEREQ < tMUL).
+    Conflict between rule 36 and token tDIV resolved as shift (tGREATEREQ < tDIV).
+    Conflict between rule 36 and token tEQUALS resolved as reduce (tEQUALS < tGREATEREQ).
+    Conflict between rule 36 and token tNEQUALS resolved as reduce (tNEQUALS < tGREATEREQ).
+    Conflict between rule 36 and token tGREATEREQ resolved as reduce (%left tGREATEREQ).
+    Conflict between rule 36 and token tLESSEQ resolved as reduce (%left tLESSEQ).
+    Conflict between rule 36 and token tGREATER resolved as reduce (%left tGREATER).
+    Conflict between rule 36 and token tLESS resolved as reduce (%left tLESS).
+    Conflict between rule 36 and token tAND resolved as reduce (tAND < tGREATEREQ).
+    Conflict between rule 36 and token tOR resolved as reduce (tOR < tGREATEREQ).
+
+
+State 68
+
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   37     | expr tLESSEQ expr .  [tRPAREN, tSEMICOLON, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
+
+    tADD    shift, and go to state 40
+    tMUL    shift, and go to state 41
+    tDIV    shift, and go to state 42
+    tMINUS  shift, and go to state 43
+
+    tMINUS    [reduce using rule 37 (expr)]
+    $default  reduce using rule 37 (expr)
+
+    Conflict between rule 37 and token tADD resolved as shift (tLESSEQ < tADD).
+    Conflict between rule 37 and token tMUL resolved as shift (tLESSEQ < tMUL).
+    Conflict between rule 37 and token tDIV resolved as shift (tLESSEQ < tDIV).
+    Conflict between rule 37 and token tEQUALS resolved as reduce (tEQUALS < tLESSEQ).
+    Conflict between rule 37 and token tNEQUALS resolved as reduce (tNEQUALS < tLESSEQ).
+    Conflict between rule 37 and token tGREATEREQ resolved as reduce (%left tGREATEREQ).
+    Conflict between rule 37 and token tLESSEQ resolved as reduce (%left tLESSEQ).
+    Conflict between rule 37 and token tGREATER resolved as reduce (%left tGREATER).
+    Conflict between rule 37 and token tLESS resolved as reduce (%left tLESS).
+    Conflict between rule 37 and token tAND resolved as reduce (tAND < tLESSEQ).
+    Conflict between rule 37 and token tOR resolved as reduce (tOR < tLESSEQ).
+
+
+State 69
+
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   38     | expr tGREATER expr .  [tRPAREN, tSEMICOLON, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
+
+    tADD    shift, and go to state 40
+    tMUL    shift, and go to state 41
+    tDIV    shift, and go to state 42
+    tMINUS  shift, and go to state 43
+
+    tMINUS    [reduce using rule 38 (expr)]
+    $default  reduce using rule 38 (expr)
+
+    Conflict between rule 38 and token tADD resolved as shift (tGREATER < tADD).
+    Conflict between rule 38 and token tMUL resolved as shift (tGREATER < tMUL).
+    Conflict between rule 38 and token tDIV resolved as shift (tGREATER < tDIV).
+    Conflict between rule 38 and token tEQUALS resolved as reduce (tEQUALS < tGREATER).
+    Conflict between rule 38 and token tNEQUALS resolved as reduce (tNEQUALS < tGREATER).
+    Conflict between rule 38 and token tGREATEREQ resolved as reduce (%left tGREATEREQ).
+    Conflict between rule 38 and token tLESSEQ resolved as reduce (%left tLESSEQ).
+    Conflict between rule 38 and token tGREATER resolved as reduce (%left tGREATER).
+    Conflict between rule 38 and token tLESS resolved as reduce (%left tLESS).
+    Conflict between rule 38 and token tAND resolved as reduce (tAND < tGREATER).
+    Conflict between rule 38 and token tOR resolved as reduce (tOR < tGREATER).
+
+
+State 70
+
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   39     | expr tLESS expr .  [tRPAREN, tSEMICOLON, tMINUS, tEQUALS, tNEQUALS, tGREATEREQ, tLESSEQ, tGREATER, tLESS, tAND, tOR]
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
+
+    tADD    shift, and go to state 40
+    tMUL    shift, and go to state 41
+    tDIV    shift, and go to state 42
+    tMINUS  shift, and go to state 43
+
+    tMINUS    [reduce using rule 39 (expr)]
+    $default  reduce using rule 39 (expr)
+
+    Conflict between rule 39 and token tADD resolved as shift (tLESS < tADD).
+    Conflict between rule 39 and token tMUL resolved as shift (tLESS < tMUL).
+    Conflict between rule 39 and token tDIV resolved as shift (tLESS < tDIV).
+    Conflict between rule 39 and token tEQUALS resolved as reduce (tEQUALS < tLESS).
+    Conflict between rule 39 and token tNEQUALS resolved as reduce (tNEQUALS < tLESS).
+    Conflict between rule 39 and token tGREATEREQ resolved as reduce (%left tGREATEREQ).
+    Conflict between rule 39 and token tLESSEQ resolved as reduce (%left tLESSEQ).
+    Conflict between rule 39 and token tGREATER resolved as reduce (%left tGREATER).
+    Conflict between rule 39 and token tLESS resolved as reduce (%left tLESS).
+    Conflict between rule 39 and token tAND resolved as reduce (tAND < tLESS).
+    Conflict between rule 39 and token tOR resolved as reduce (tOR < tLESS).
+
+
+State 71
+
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   42     | expr tAND expr .  [tRPAREN, tSEMICOLON, tMINUS, tAND, tOR]
+   43     | expr . tOR expr
+
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
+    tEQUALS     shift, and go to state 44
+    tNEQUALS    shift, and go to state 45
+    tGREATEREQ  shift, and go to state 46
+    tLESSEQ     shift, and go to state 47
+    tGREATER    shift, and go to state 48
+    tLESS       shift, and go to state 49
+
+    tMINUS    [reduce using rule 42 (expr)]
+    $default  reduce using rule 42 (expr)
+
+    Conflict between rule 42 and token tADD resolved as shift (tAND < tADD).
+    Conflict between rule 42 and token tMUL resolved as shift (tAND < tMUL).
+    Conflict between rule 42 and token tDIV resolved as shift (tAND < tDIV).
+    Conflict between rule 42 and token tEQUALS resolved as shift (tAND < tEQUALS).
+    Conflict between rule 42 and token tNEQUALS resolved as shift (tAND < tNEQUALS).
+    Conflict between rule 42 and token tGREATEREQ resolved as shift (tAND < tGREATEREQ).
+    Conflict between rule 42 and token tLESSEQ resolved as shift (tAND < tLESSEQ).
+    Conflict between rule 42 and token tGREATER resolved as shift (tAND < tGREATER).
+    Conflict between rule 42 and token tLESS resolved as shift (tAND < tLESS).
+    Conflict between rule 42 and token tAND resolved as reduce (%left tAND).
+    Conflict between rule 42 and token tOR resolved as reduce (tOR < tAND).
+
+
+State 72
+
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
+   43     | expr tOR expr .  [tRPAREN, tSEMICOLON, tMINUS, tOR]
+
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
+    tEQUALS     shift, and go to state 44
+    tNEQUALS    shift, and go to state 45
+    tGREATEREQ  shift, and go to state 46
+    tLESSEQ     shift, and go to state 47
+    tGREATER    shift, and go to state 48
+    tLESS       shift, and go to state 49
+    tAND        shift, and go to state 50
+
+    tMINUS    [reduce using rule 43 (expr)]
+    $default  reduce using rule 43 (expr)
+
+    Conflict between rule 43 and token tADD resolved as shift (tOR < tADD).
+    Conflict between rule 43 and token tMUL resolved as shift (tOR < tMUL).
+    Conflict between rule 43 and token tDIV resolved as shift (tOR < tDIV).
+    Conflict between rule 43 and token tEQUALS resolved as shift (tOR < tEQUALS).
+    Conflict between rule 43 and token tNEQUALS resolved as shift (tOR < tNEQUALS).
+    Conflict between rule 43 and token tGREATEREQ resolved as shift (tOR < tGREATEREQ).
+    Conflict between rule 43 and token tLESSEQ resolved as shift (tOR < tLESSEQ).
+    Conflict between rule 43 and token tGREATER resolved as shift (tOR < tGREATER).
+    Conflict between rule 43 and token tLESS resolved as shift (tOR < tLESS).
+    Conflict between rule 43 and token tAND resolved as shift (tOR < tAND).
+    Conflict between rule 43 and token tOR resolved as reduce (%left tOR).
+
+
+State 73
+
+   10 decl: tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON .
+
+    $default  reduce using rule 10 (decl)
 
 
 State 74
 
-   11 decl: tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON .
+   14 decl: tVAR tIDENT tCOLON tBOOLTYPE tASSIGN . expr tSEMICOLON
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    $default  reduce using rule 11 (decl)
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
+    tNOT        shift, and go to state 29
+
+    expr  go to state 85
 
 
 State 75
 
-   15 decl: tVAR tIDENT tCOLON tBOOLTYPE tASSIGN . expr tSEMICOLON
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   11 decl: tVAR tIDENT tCOLON tINTTYPE tSEMICOLON .
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
-    tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
-
-    expr  go to state 86
+    $default  reduce using rule 11 (decl)
 
 
 State 76
 
-   12 decl: tVAR tIDENT tCOLON tINTTYPE tSEMICOLON .
+   15 decl: tVAR tIDENT tCOLON tINTTYPE tASSIGN . expr tSEMICOLON
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    $default  reduce using rule 12 (decl)
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
+    tNOT        shift, and go to state 29
+
+    expr  go to state 86
 
 
 State 77
 
-   16 decl: tVAR tIDENT tCOLON tINTTYPE tASSIGN . expr tSEMICOLON
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   12 decl: tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON .
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
-    tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
-
-    expr  go to state 87
+    $default  reduce using rule 12 (decl)
 
 
 State 78
 
-   13 decl: tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON .
+   16 decl: tVAR tIDENT tCOLON tFLOATTYPE tASSIGN . expr tSEMICOLON
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    $default  reduce using rule 13 (decl)
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
+    tNOT        shift, and go to state 29
+
+    expr  go to state 87
 
 
 State 79
 
-   17 decl: tVAR tIDENT tCOLON tFLOATTYPE tASSIGN . expr tSEMICOLON
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+   13 decl: tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON .
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
-    tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
-
-    expr  go to state 88
+    $default  reduce using rule 13 (decl)
 
 
 State 80
 
-   14 decl: tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON .
+   17 decl: tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN . expr tSEMICOLON
+   23 expr: . tIDENT
+   24     | . tTRUE
+   25     | . tFALSE
+   26     | . tINTVAL
+   27     | . tFLOATVAL
+   28     | . tSTRINGVAL
+   29     | . tMINUS expr
+   30     | . tNOT expr
+   31     | . tLPAREN expr tRPAREN
+   32     | . expr tMUL expr
+   33     | . expr tDIV expr
+   34     | . expr tADD expr
+   35     | . expr tMINUS expr
+   36     | . expr tGREATEREQ expr
+   37     | . expr tLESSEQ expr
+   38     | . expr tGREATER expr
+   39     | . expr tLESS expr
+   40     | . expr tEQUALS expr
+   41     | . expr tNEQUALS expr
+   42     | . expr tAND expr
+   43     | . expr tOR expr
 
-    $default  reduce using rule 14 (decl)
+    tTRUE       shift, and go to state 21
+    tFALSE      shift, and go to state 22
+    tINTVAL     shift, and go to state 23
+    tFLOATVAL   shift, and go to state 24
+    tSTRINGVAL  shift, and go to state 25
+    tIDENT      shift, and go to state 26
+    tLPAREN     shift, and go to state 27
+    tMINUS      shift, and go to state 28
+    tNOT        shift, and go to state 29
+
+    expr  go to state 88
 
 
 State 81
 
-   18 decl: tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN . expr tSEMICOLON
-   24 expr: . tIDENT
-   25     | . tTRUE
-   26     | . tFALSE
-   27     | . tINTVAL
-   28     | . tFLOATVAL
-   29     | . tSTRINGVAL
-   30     | . tMINUS expr
-   31     | . tNOT expr
-   32     | . tLPAREN expr tRPAREN
-   33     | . expr tMUL expr
-   34     | . expr tDIV expr
-   35     | . expr tADD expr
-   36     | . expr tMINUS expr
-   37     | . expr tGREATEREQ expr
-   38     | . expr tLESSEQ expr
-   39     | . expr tGREATER expr
-   40     | . expr tLESS expr
-   41     | . expr tEQUALS expr
-   42     | . expr tNEQUALS expr
-   43     | . expr tAND expr
-   44     | . expr tOR expr
+    2 stmts: . %empty  [tRBRACE]
+    3      | . stmt stmts
+    4 stmt: . tREAD tLPAREN tIDENT tRPAREN tSEMICOLON
+    5     | . tPRINT tLPAREN expr tRPAREN tSEMICOLON
+    6     | . decl
+    7     | . tIDENT tASSIGN expr tSEMICOLON
+    8     | . ifstmt
+    9     | . whileloop
+   10 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
+   11     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
+   12     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
+   13     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
+   14     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+   15     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
+   16     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+   17     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+   18 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+   18       | tIF tLPAREN expr tRPAREN tLBRACE . stmts tRBRACE elsestmt
+   22 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
 
-    tTRUE       shift, and go to state 22
-    tFALSE      shift, and go to state 23
-    tINTVAL     shift, and go to state 24
-    tFLOATVAL   shift, and go to state 25
-    tSTRINGVAL  shift, and go to state 26
-    tIDENT      shift, and go to state 27
-    tLPAREN     shift, and go to state 28
-    tNOT        shift, and go to state 29
-    tMINUS      shift, and go to state 30
+    tIDENT  shift, and go to state 1
+    tVAR    shift, and go to state 2
+    tIF     shift, and go to state 3
+    tWHILE  shift, and go to state 4
+    tREAD   shift, and go to state 5
+    tPRINT  shift, and go to state 6
 
-    expr  go to state 89
+    $default  reduce using rule 2 (stmts)
+
+    stmts      go to state 89
+    stmt       go to state 9
+    decl       go to state 10
+    ifstmt     go to state 11
+    whileloop  go to state 12
 
 
 State 82
@@ -2114,113 +2133,69 @@ State 82
     7     | . tIDENT tASSIGN expr tSEMICOLON
     8     | . ifstmt
     9     | . whileloop
-   10     | . tCOMMENT
-   11 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
-   12     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
-   13     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
-   14     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
-   15     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
-   16     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
-   17     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
-   18     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
-   19 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
-   19       | tIF tLPAREN expr tRPAREN tLBRACE . stmts tRBRACE elsestmt
-   20       | . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
-   20       | tIF tLPAREN expr tRPAREN tLBRACE . stmts tRBRACE
-   23 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+   10 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
+   11     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
+   12     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
+   13     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
+   14     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+   15     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
+   16     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+   17     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+   18 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+   22 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+   22          | tWHILE tLPAREN expr tRPAREN tLBRACE . stmts tRBRACE
 
-    tIDENT    shift, and go to state 1
-    tVAR      shift, and go to state 2
-    tIF       shift, and go to state 3
-    tWHILE    shift, and go to state 4
-    tREAD     shift, and go to state 5
-    tPRINT    shift, and go to state 6
-    tCOMMENT  shift, and go to state 7
+    tIDENT  shift, and go to state 1
+    tVAR    shift, and go to state 2
+    tIF     shift, and go to state 3
+    tWHILE  shift, and go to state 4
+    tREAD   shift, and go to state 5
+    tPRINT  shift, and go to state 6
 
     $default  reduce using rule 2 (stmts)
 
     stmts      go to state 90
-    stmt       go to state 10
-    decl       go to state 11
-    ifstmt     go to state 12
-    whileloop  go to state 13
+    stmt       go to state 9
+    decl       go to state 10
+    ifstmt     go to state 11
+    whileloop  go to state 12
 
 
 State 83
-
-    2 stmts: . %empty  [tRBRACE]
-    3      | . stmt stmts
-    4 stmt: . tREAD tLPAREN tIDENT tRPAREN tSEMICOLON
-    5     | . tPRINT tLPAREN expr tRPAREN tSEMICOLON
-    6     | . decl
-    7     | . tIDENT tASSIGN expr tSEMICOLON
-    8     | . ifstmt
-    9     | . whileloop
-   10     | . tCOMMENT
-   11 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
-   12     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
-   13     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
-   14     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
-   15     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
-   16     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
-   17     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
-   18     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
-   19 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
-   20       | . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
-   23 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
-   23          | tWHILE tLPAREN expr tRPAREN tLBRACE . stmts tRBRACE
-
-    tIDENT    shift, and go to state 1
-    tVAR      shift, and go to state 2
-    tIF       shift, and go to state 3
-    tWHILE    shift, and go to state 4
-    tREAD     shift, and go to state 5
-    tPRINT    shift, and go to state 6
-    tCOMMENT  shift, and go to state 7
-
-    $default  reduce using rule 2 (stmts)
-
-    stmts      go to state 91
-    stmt       go to state 10
-    decl       go to state 11
-    ifstmt     go to state 12
-    whileloop  go to state 13
-
-
-State 84
 
     4 stmt: tREAD tLPAREN tIDENT tRPAREN tSEMICOLON .
 
     $default  reduce using rule 4 (stmt)
 
 
-State 85
+State 84
 
     5 stmt: tPRINT tLPAREN expr tRPAREN tSEMICOLON .
 
     $default  reduce using rule 5 (stmt)
 
 
-State 86
+State 85
 
-   15 decl: tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr . tSEMICOLON
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   14 decl: tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr . tSEMICOLON
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
-    tSEMICOLON  shift, and go to state 92
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
+    tSEMICOLON  shift, and go to state 91
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
     tEQUALS     shift, and go to state 44
     tNEQUALS    shift, and go to state 45
     tGREATEREQ  shift, and go to state 46
@@ -2229,29 +2204,60 @@ State 86
     tLESS       shift, and go to state 49
     tAND        shift, and go to state 50
     tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
+
+
+State 86
+
+   15 decl: tVAR tIDENT tCOLON tINTTYPE tASSIGN expr . tSEMICOLON
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
+
+    tSEMICOLON  shift, and go to state 92
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
+    tEQUALS     shift, and go to state 44
+    tNEQUALS    shift, and go to state 45
+    tGREATEREQ  shift, and go to state 46
+    tLESSEQ     shift, and go to state 47
+    tGREATER    shift, and go to state 48
+    tLESS       shift, and go to state 49
+    tAND        shift, and go to state 50
+    tOR         shift, and go to state 51
 
 
 State 87
 
-   16 decl: tVAR tIDENT tCOLON tINTTYPE tASSIGN expr . tSEMICOLON
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   16 decl: tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr . tSEMICOLON
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
     tSEMICOLON  shift, and go to state 93
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
     tEQUALS     shift, and go to state 44
     tNEQUALS    shift, and go to state 45
     tGREATEREQ  shift, and go to state 46
@@ -2260,29 +2266,29 @@ State 87
     tLESS       shift, and go to state 49
     tAND        shift, and go to state 50
     tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
 
 
 State 88
 
-   17 decl: tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr . tSEMICOLON
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   17 decl: tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr . tSEMICOLON
+   32 expr: expr . tMUL expr
+   33     | expr . tDIV expr
+   34     | expr . tADD expr
+   35     | expr . tMINUS expr
+   36     | expr . tGREATEREQ expr
+   37     | expr . tLESSEQ expr
+   38     | expr . tGREATER expr
+   39     | expr . tLESS expr
+   40     | expr . tEQUALS expr
+   41     | expr . tNEQUALS expr
+   42     | expr . tAND expr
+   43     | expr . tOR expr
 
     tSEMICOLON  shift, and go to state 94
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
+    tADD        shift, and go to state 40
+    tMUL        shift, and go to state 41
+    tDIV        shift, and go to state 42
+    tMINUS      shift, and go to state 43
     tEQUALS     shift, and go to state 44
     tNEQUALS    shift, and go to state 45
     tGREATEREQ  shift, and go to state 46
@@ -2291,125 +2297,91 @@ State 88
     tLESS       shift, and go to state 49
     tAND        shift, and go to state 50
     tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
 
 
 State 89
 
-   18 decl: tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr . tSEMICOLON
-   33 expr: expr . tMUL expr
-   34     | expr . tDIV expr
-   35     | expr . tADD expr
-   36     | expr . tMINUS expr
-   37     | expr . tGREATEREQ expr
-   38     | expr . tLESSEQ expr
-   39     | expr . tGREATER expr
-   40     | expr . tLESS expr
-   41     | expr . tEQUALS expr
-   42     | expr . tNEQUALS expr
-   43     | expr . tAND expr
-   44     | expr . tOR expr
+   18 ifstmt: tIF tLPAREN expr tRPAREN tLBRACE stmts . tRBRACE elsestmt
 
-    tSEMICOLON  shift, and go to state 95
-    tADD        shift, and go to state 41
-    tMUL        shift, and go to state 42
-    tDIV        shift, and go to state 43
-    tEQUALS     shift, and go to state 44
-    tNEQUALS    shift, and go to state 45
-    tGREATEREQ  shift, and go to state 46
-    tLESSEQ     shift, and go to state 47
-    tGREATER    shift, and go to state 48
-    tLESS       shift, and go to state 49
-    tAND        shift, and go to state 50
-    tOR         shift, and go to state 51
-    tMINUS      shift, and go to state 52
+    tRBRACE  shift, and go to state 95
 
 
 State 90
 
-   19 ifstmt: tIF tLPAREN expr tRPAREN tLBRACE stmts . tRBRACE elsestmt
-   20       | tIF tLPAREN expr tRPAREN tLBRACE stmts . tRBRACE
+   22 whileloop: tWHILE tLPAREN expr tRPAREN tLBRACE stmts . tRBRACE
 
     tRBRACE  shift, and go to state 96
 
 
 State 91
 
-   23 whileloop: tWHILE tLPAREN expr tRPAREN tLBRACE stmts . tRBRACE
+   14 decl: tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON .
 
-    tRBRACE  shift, and go to state 97
+    $default  reduce using rule 14 (decl)
 
 
 State 92
 
-   15 decl: tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON .
+   15 decl: tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON .
 
     $default  reduce using rule 15 (decl)
 
 
 State 93
 
-   16 decl: tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON .
+   16 decl: tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON .
 
     $default  reduce using rule 16 (decl)
 
 
 State 94
 
-   17 decl: tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON .
+   17 decl: tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON .
 
     $default  reduce using rule 17 (decl)
 
 
 State 95
 
-   18 decl: tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON .
+   18 ifstmt: tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE . elsestmt
+   19 elsestmt: . tELSE tLBRACE stmts tRBRACE
+   20         | . tELSE ifstmt
+   21         | . %empty  [$end, tIDENT, tRBRACE, tVAR, tIF, tWHILE, tREAD, tPRINT]
 
-    $default  reduce using rule 18 (decl)
+    tELSE  shift, and go to state 97
+
+    $default  reduce using rule 21 (elsestmt)
+
+    elsestmt  go to state 98
 
 
 State 96
 
-   19 ifstmt: tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE . elsestmt
-   20       | tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE .  [$end, tIDENT, tRBRACE, tVAR, tIF, tWHILE, tREAD, tPRINT, tCOMMENT]
-   21 elsestmt: . tELSE tLBRACE stmts tRBRACE
-   22         | . tELSE ifstmt
+   22 whileloop: tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE .
 
-    tELSE  shift, and go to state 98
-
-    $default  reduce using rule 20 (ifstmt)
-
-    elsestmt  go to state 99
+    $default  reduce using rule 22 (whileloop)
 
 
 State 97
 
-   23 whileloop: tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE .
+   18 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+   19 elsestmt: tELSE . tLBRACE stmts tRBRACE
+   20         | tELSE . ifstmt
 
-    $default  reduce using rule 23 (whileloop)
+    tLBRACE  shift, and go to state 99
+    tIF      shift, and go to state 3
+
+    ifstmt  go to state 100
 
 
 State 98
 
-   19 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
-   20       | . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
-   21 elsestmt: tELSE . tLBRACE stmts tRBRACE
-   22         | tELSE . ifstmt
+   18 ifstmt: tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt .
 
-    tLBRACE  shift, and go to state 100
-    tIF      shift, and go to state 3
-
-    ifstmt  go to state 101
+    $default  reduce using rule 18 (ifstmt)
 
 
 State 99
-
-   19 ifstmt: tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt .
-
-    $default  reduce using rule 19 (ifstmt)
-
-
-State 100
 
     2 stmts: . %empty  [tRBRACE]
     3      | . stmt stmts
@@ -2419,53 +2391,50 @@ State 100
     7     | . tIDENT tASSIGN expr tSEMICOLON
     8     | . ifstmt
     9     | . whileloop
-   10     | . tCOMMENT
-   11 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
-   12     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
-   13     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
-   14     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
-   15     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
-   16     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
-   17     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
-   18     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
-   19 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
-   20       | . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
-   21 elsestmt: tELSE tLBRACE . stmts tRBRACE
-   23 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
+   10 decl: . tVAR tIDENT tCOLON tBOOLTYPE tSEMICOLON
+   11     | . tVAR tIDENT tCOLON tINTTYPE tSEMICOLON
+   12     | . tVAR tIDENT tCOLON tFLOATTYPE tSEMICOLON
+   13     | . tVAR tIDENT tCOLON tSTRINGTYPE tSEMICOLON
+   14     | . tVAR tIDENT tCOLON tBOOLTYPE tASSIGN expr tSEMICOLON
+   15     | . tVAR tIDENT tCOLON tINTTYPE tASSIGN expr tSEMICOLON
+   16     | . tVAR tIDENT tCOLON tFLOATTYPE tASSIGN expr tSEMICOLON
+   17     | . tVAR tIDENT tCOLON tSTRINGTYPE tASSIGN expr tSEMICOLON
+   18 ifstmt: . tIF tLPAREN expr tRPAREN tLBRACE stmts tRBRACE elsestmt
+   19 elsestmt: tELSE tLBRACE . stmts tRBRACE
+   22 whileloop: . tWHILE tLPAREN expr tRPAREN tLBRACE stmts tRBRACE
 
-    tIDENT    shift, and go to state 1
-    tVAR      shift, and go to state 2
-    tIF       shift, and go to state 3
-    tWHILE    shift, and go to state 4
-    tREAD     shift, and go to state 5
-    tPRINT    shift, and go to state 6
-    tCOMMENT  shift, and go to state 7
+    tIDENT  shift, and go to state 1
+    tVAR    shift, and go to state 2
+    tIF     shift, and go to state 3
+    tWHILE  shift, and go to state 4
+    tREAD   shift, and go to state 5
+    tPRINT  shift, and go to state 6
 
     $default  reduce using rule 2 (stmts)
 
-    stmts      go to state 102
-    stmt       go to state 10
-    decl       go to state 11
-    ifstmt     go to state 12
-    whileloop  go to state 13
+    stmts      go to state 101
+    stmt       go to state 9
+    decl       go to state 10
+    ifstmt     go to state 11
+    whileloop  go to state 12
+
+
+State 100
+
+   20 elsestmt: tELSE ifstmt .
+
+    $default  reduce using rule 20 (elsestmt)
 
 
 State 101
 
-   22 elsestmt: tELSE ifstmt .
+   19 elsestmt: tELSE tLBRACE stmts . tRBRACE
 
-    $default  reduce using rule 22 (elsestmt)
+    tRBRACE  shift, and go to state 102
 
 
 State 102
 
-   21 elsestmt: tELSE tLBRACE stmts . tRBRACE
+   19 elsestmt: tELSE tLBRACE stmts tRBRACE .
 
-    tRBRACE  shift, and go to state 103
-
-
-State 103
-
-   21 elsestmt: tELSE tLBRACE stmts tRBRACE .
-
-    $default  reduce using rule 21 (elsestmt)
+    $default  reduce using rule 19 (elsestmt)

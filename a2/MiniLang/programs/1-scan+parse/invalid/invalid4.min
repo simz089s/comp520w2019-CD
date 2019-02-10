@@ -1,0 +1,3 @@
+// Float without numbers surrounding dot
+
+var x: float = 0.;

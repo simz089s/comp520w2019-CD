@@ -1,0 +1,4 @@
+// statement instead of expression
+var x : int;
+if (x = 1) {
+}

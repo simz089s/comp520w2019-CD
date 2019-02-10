@@ -1,0 +1,15 @@
+// valid identifiers, including initialization
+var x : int = 0;
+
+// valid declaration, float type 
+var y : float = 1.0;
+
+// valid declaration, string type
+var z : string = "";
+
+// valid declaration, boolean type
+var a : boolean = true;
+
+// valid declaration, expression
+var b : int = 1 + 2;
+var c : int = b + 2;

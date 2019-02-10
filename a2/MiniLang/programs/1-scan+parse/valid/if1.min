@@ -1,0 +1,8 @@
+// valid if, expr condition
+if (100 > 50) {
+}
+
+// valid if, identifier condition
+var x : boolean = true;
+if (x) {
+}

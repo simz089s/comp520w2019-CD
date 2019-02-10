@@ -1,0 +1,30 @@
+// valid operators, integer
+var x : int;
+x = 2 + 3;
+x = 2 - 3;
+x = 2 * 3;
+x = 2 / 3;
+
+// valid, floating point operations
+var y : float;
+y = 0.0 + 0.0;
+y = 0.0 - 0.0;
+y = 0.0 * 0.0;
+y = 0.0 / 0.0;
+
+// valid string operations
+var s : string;
+s = "string" + "string";
+s = "string" * 3;
+
+// valid logical operators
+var b : boolean;
+var z : int = 0;
+b = z == 0;
+b = z != 0;
+b = b && z == 0;
+b = b || z != 0;
+b = z > 0;
+b = z >= 0;
+b = z <= 0;
+b = z < 0;

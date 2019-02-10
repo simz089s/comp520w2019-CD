@@ -1,0 +1,3 @@
+// Unparenthesized read
+var x : int;
+read x;

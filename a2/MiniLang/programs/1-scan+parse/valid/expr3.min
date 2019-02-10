@@ -1,0 +1,7 @@
+// valid unary operator
+var x : int;
+x = --3;
+
+// valid bang operation
+var b : boolean;
+b = !!!true;

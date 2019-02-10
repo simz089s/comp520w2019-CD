@@ -1,0 +1,8 @@
+// valid while, expr condition
+while (true) {
+}
+
+// valid while with condition variables
+var x : int = 0;
+while (x == 0) {
+}

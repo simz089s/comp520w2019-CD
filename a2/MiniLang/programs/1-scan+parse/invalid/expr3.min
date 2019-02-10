@@ -1,0 +1,3 @@
+// missing close paren
+var x : int;
+x = (3 + 4;

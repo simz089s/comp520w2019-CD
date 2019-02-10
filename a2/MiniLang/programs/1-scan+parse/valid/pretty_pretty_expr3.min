@@ -1,0 +1,4 @@
+var x: int;
+x = -(-(3));
+var b: boolean;
+b = !(!(!(true)));

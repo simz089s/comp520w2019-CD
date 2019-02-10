@@ -1,0 +1,8 @@
+var x: int;
+var y: float;
+var z: string;
+var b: boolean;
+x = 3;
+y = 0.000000;
+z = true;
+b = true;

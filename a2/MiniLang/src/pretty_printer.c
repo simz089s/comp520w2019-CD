@@ -33,84 +33,84 @@ void prettyEXPR(EXPR* expr)
 		case k_expressionKindMultiplication:
 			printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("*");
+			printf(" * ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
 		case k_expressionKindDivision:
 			printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("/");
+			printf(" / ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
 		case k_expressionKindAddition:
 			printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("+");
+			printf(" + ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
 		case k_expressionKindSubtraction:
 			printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("-");
+			printf(" - ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
         case k_expressionKindGreaterEqual:
             printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf(">=");
+			printf(" >= ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
         case k_expressionKindLessEqual:
             printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("<=");
+			printf(" <= ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
         case k_expressionKindGreater:
             printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf(">");
+			printf(" > ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
         case k_expressionKindLess:
             printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("<");
+			printf(" < ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
         case k_expressionKindEquals:
             printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("==");
+			printf(" == ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
         case k_expressionKindNotEquals:
             printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("!=");
+			printf(" != ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
         case k_expressionKindAnd:
             printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("&&");
+			printf(" && ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
         case k_expressionKindOr:
             printf("(");
 			prettyEXPR(expr->val.binary.lhs);
-			printf("||");
+			printf(" || ");
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;

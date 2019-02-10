@@ -1,0 +1,17 @@
+if (false) {
+}
+else {
+}
+var x: boolean = true;
+if (x) {
+}
+else {
+}
+if (x) {
+}
+else if ((x == x)) {
+}
+else if ((x != x)) {
+}
+else {
+}

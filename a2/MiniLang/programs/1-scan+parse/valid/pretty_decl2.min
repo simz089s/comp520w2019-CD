@@ -1,0 +1,6 @@
+var x: int = 0;
+var y: float = 1.000000;
+var z: string = true;
+var a: boolean = true;
+var b: int = (1 + 2);
+var c: int = (b + 2);

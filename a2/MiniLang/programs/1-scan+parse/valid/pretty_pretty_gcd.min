@@ -1,0 +1,37 @@
+var m: int = 0;
+var n: int = 0;
+read(m);
+read(n);
+if (((m == 0) && (n == 0))) {
+print(0);
+}
+else {
+if ((m == 0)) {
+print(n);
+}
+else {
+if ((m < 0)) {
+m = -(m);
+}
+if ((n < 0)) {
+n = (n * -(1));
+}
+var divisor: int = 1;
+var a: int = 1;
+while ((a <= m)) {
+var m_mod_a_rem: int = 0;
+var n_mod_a_rem: int = 0;
+while ((m_mod_a_rem >= a)) {
+m_mod_a_rem = (m_mod_a_rem - a);
+}
+while ((n_mod_a_rem >= a)) {
+n_mod_a_rem = (n_mod_a_rem - a);
+}
+if (((m_mod_a_rem == 0) && (n_mod_a_rem == 0))) {
+divisor = a;
+}
+a = (a + 1);
+}
+print(divisor);
+}
+}

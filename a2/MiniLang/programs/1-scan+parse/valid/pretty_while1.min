@@ -1,0 +1,5 @@
+while (false) {
+}
+var x: int = 0;
+while ((x == 0)) {
+}

@@ -1,0 +1,13 @@
+while (false) {
+var n: int = 0;
+read(n);
+var a: int = 0;
+var b: int = 1;
+while (n) {
+var t: int = a;
+a = b;
+b = (b + t);
+n = (n - 1);
+}
+print(a);
+}

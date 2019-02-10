@@ -11,7 +11,6 @@ bool tokens_mode = false;
 %}
 
 SYMBOL [~@\#\$%^&*\-+\/`<>=_\|'.,;:!?{}\[\]()]
-SINGLEQUOTE ' /* Put here because editor's syntax highlighter can't properly lex lexer generator syntax :) */
 ESCAPE \\[abfnrtv\"\\]
 WHITESPACE [ \t\r]
 DIGIT [0-9]

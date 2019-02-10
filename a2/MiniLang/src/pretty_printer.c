@@ -15,7 +15,7 @@ void prettyEXPR(EXPR* expr)
 			printf("%i", expr->val.intLiteral);
 			break;
 		case k_expressionKindFloatLiteral:
-			printf("%f", expr->val.floatLiteral);
+			printf("%f", (double) expr->val.floatLiteral);
 			break;
 		case k_expressionKindStringLiteral:
 			printf("%s", expr->val.stringLiteral);
@@ -114,6 +114,8 @@ void prettyEXPR(EXPR* expr)
 			prettyEXPR(expr->val.binary.rhs);
 			printf(")");
 			break;
+        /*default:
+            fprintf(stderr, "Error: no valid expression found");*/
 	}
 }
 
@@ -132,14 +134,17 @@ void prettyType(Type type)
         case stringType:
             printf("string");
             break;
+        /*default:
+            fprintf(stderr, "Error: no valid type found");*/
     }
 }
 
 void prettySTMT(STMT* stmt)
 {
+    if (stmt == NULL) return;
     switch (stmt->kind) {
         case k_statementKindRead:
-            printf("print(%s);\n", stmt->val.read.identifier);
+            printf("read(%s);\n", stmt->val.read.identifier);
             break;
         case k_statementKindPrint:
             printf("print(");
@@ -152,15 +157,15 @@ void prettySTMT(STMT* stmt)
             printf(";\n");
             break;
         case k_statementKindDeclarationInitialized:
-            printf("var %s: ", stmt->val.declaration.identifier);
-            prettyType(stmt->val.declaration.type);
+            printf("var %s: ", stmt->val.declarationInitialized.identifier);
+            prettyType(stmt->val.declarationInitialized.type);
             printf(" = ");
             prettyEXPR(stmt->val.declarationInitialized.expression);
             printf(";\n");
             break;
         case k_statementKindAssignment:
-            printf("%s = ", stmt->val.declaration.identifier);
-            prettyEXPR(stmt->val.declarationInitialized.expression);
+            printf("%s = ", stmt->val.assignment.identifier);
+            prettyEXPR(stmt->val.assignment.expression);
             printf(";\n");
             break;
         case k_statementKindIf:
@@ -187,13 +192,15 @@ void prettySTMT(STMT* stmt)
             prettySTMTS(stmt->val.ifStmt.statements);
             printf("}\n");
             break;
+        /*default:
+            fprintf(stderr, "Error: no valid expression found");*/
     }
 }
 
 void prettySTMTS(STMTS* stmts)
 {
     STMTS* current = stmts;
-    while (current->statements != NULL) {
+    while (current != NULL && current->statement != NULL) {
         prettySTMT(current->statement);
         current = current->statements;
     }

@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     }
     else if (strcmp("pretty", argv[1]) == 0) {
         if (yyparse() == 0) {
-            prettySTMTS(root);
+            prettySTMTS(root, 0);
         }
     }
 

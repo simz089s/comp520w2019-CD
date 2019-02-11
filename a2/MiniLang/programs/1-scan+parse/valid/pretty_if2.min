@@ -1,17 +1,17 @@
 if (false) {
 }
-else {
-}
+	else {
+	}
 var x: boolean = true;
 if (x) {
 }
-else {
-}
+	else {
+	}
 if (x) {
 }
-else if ((x == x)) {
-}
-else if ((x != x)) {
-}
-else {
-}
+	else 		if ((x == x)) {
+		}
+			else 				if ((x != x)) {
+				}
+					else {
+					}

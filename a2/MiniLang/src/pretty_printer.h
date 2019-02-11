@@ -5,7 +5,7 @@
 
 void prettyEXPR(EXPR* expr);
 void prettyType(Type type);
-void prettySTMT(STMT* stmt);
-void prettySTMTS(STMTS* stmts);
+void prettySTMT(STMT* stmt, int indent);
+void prettySTMTS(STMTS* stmts, int indent);
 
 #endif /* PRETTY_PRINTER_H */

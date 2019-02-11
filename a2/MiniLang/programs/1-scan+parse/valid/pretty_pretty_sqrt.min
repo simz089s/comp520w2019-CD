@@ -3,9 +3,9 @@ var guess: float = 1.000000;
 var iter: int = 10;
 read(x);
 while (iter) {
-var quot: float = (x / guess);
-guess = (0.500000 * (guess + quot));
-iter = (iter - 1);
+	var quot: float = (x / guess);
+	guess = (0.500000 * (guess + quot));
+	iter = (iter - 1);
 }
 print(guess);
 print((guess * guess));

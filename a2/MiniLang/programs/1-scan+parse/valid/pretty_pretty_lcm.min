@@ -5,12 +5,12 @@ read(n);
 var temp_m: int = m;
 var temp_n: int = n;
 while ((temp_m != temp_n)) {
-if ((temp_m > temp_n)) {
-temp_n = (temp_n + n);
-}
-else {
-temp_m = (temp_m + m);
-}
+	if ((temp_m > temp_n)) {
+		temp_n = (temp_n + n);
+	}
+		else {
+			temp_m = (temp_m + m);
+		}
 }
 print(true);
 print(temp_m);

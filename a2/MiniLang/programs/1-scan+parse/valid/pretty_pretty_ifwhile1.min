@@ -1,9 +1,9 @@
 var x: int = 0;
 if ((x > 0)) {
-while (x) {
-}
+	while (x) {
+	}
 }
 while ((x < 0)) {
-if (x) {
-}
+	if (x) {
+	}
 }

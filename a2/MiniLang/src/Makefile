@@ -3,7 +3,7 @@ CFLAGS=-Wall -pedantic
 
 PARSEFLAGS=--verbose --report=all --yacc --defines=parser.tab.c --output=parser.tab.h
 
-all: main.c tree.c tree.h pretty_printer.c pretty_printer.h
+all: main.c tree.c tree.h pretty_printer.c pretty_printer.h symbol_table.c symbol_table.h
 	flex -l lexer.l
 	bison --verbose --report=all -d parser.y
 	${CC} ${CFLAGS} $^ -o MiniLang -lfl

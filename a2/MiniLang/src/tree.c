@@ -98,6 +98,21 @@ STMT* genSTMT_declaration(char* ident, Type type)
 	s->kind = k_statementKindDeclaration;
 	s->val.declaration.identifier = ident;
 	s->val.declaration.type = type;
+	s->val.declaration.expression = malloc(sizeof(EXPR));
+	switch (type) {
+		case boolType:
+			s->val.declaration.expression = genEXPR_boolLiteral(false);
+			break;	
+		case intType:
+			s->val.declaration.expression = genEXPR_intLiteral(0);
+			break;	
+		case floatType:
+			s->val.declaration.expression = genEXPR_floatLiteral(0.0f);
+			break;	
+		case stringType:
+			s->val.declaration.expression = genEXPR_stringLiteral("");
+			break;	
+	}
 	return s;
 }
 

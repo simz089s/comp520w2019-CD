@@ -63,6 +63,7 @@ struct EXPR {
             EXPR* rhs;
         } binary;
 	} val;
+    Type type;
 };
 
 struct STMT {
@@ -78,6 +79,7 @@ struct STMT {
         struct {
             char* identifier;
             Type type;
+            EXPR* expression;
         } declaration;
         struct {
             char* identifier;

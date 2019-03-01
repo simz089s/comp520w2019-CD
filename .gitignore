@@ -24,3 +24,8 @@ setup.log
 
 # Misc
 a.out
+
+# Bison/Flex lexer/parser generated files
+lex.yy.c
+*.output
+*.tab.{c,h}

@@ -19,4 +19,4 @@ all: main.c tree.c tree.h pretty_printer.c pretty_printer.h symbol_table.c symbo
 #	flex $<
 
 clean:
-	rm lex.yy.c parser.output parser.tab.*
+	rm lex.yy.c *.output *.tab.{c,h}

@@ -29,7 +29,6 @@ int hash(char* s) {
     return hash % HASH_SIZE;
 }
 
-// Should check type along calling this function?
 SYMBOL* putSymbol(SymbolTable* st, char* name, SymbolKind kind) {
     int i = hash(name);
     for (SYMBOL* sym = st->table[i]; sym; sym = sym->next) {
@@ -43,7 +42,6 @@ SYMBOL* putSymbol(SymbolTable* st, char* name, SymbolKind kind) {
     return sym;
 }
 
-// If return NULL then symbol does not exist
 SYMBOL* getSymbol(SymbolTable* st, char* name) {
     int i = hash(name);
 
